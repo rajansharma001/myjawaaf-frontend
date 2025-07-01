@@ -1,36 +1,139 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎓 MyJawaaf – Frontend (Next.js)
 
-## Getting Started
+**MyJawaaf** is an **online e-learning platform** currently under active development. It allows admins to manage courses and categories, while users will soon be able to browse and enroll in courses. This repository is the **frontend** built using **Next.js 14**, **TypeScript**, and **Tailwind CSS**, fully connected to a custom-built backend API.
 
-First, run the development server:
+> 🚧 **Status:** Early-stage development – Authentication and Admin Dashboard are completed. Course browsing, enrollment, and user features are under development.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🔗 Live Project
+
+🔗 [Backend Repo (GitHub)](https://github.com/rajansharma001/myjawaaf) — Built with Node.js, Express, TypeScript & MongoDB
+
+---
+
+## 🔧 Tech Stack
+
+### Frontend
+
+- **Next.js (App Router)**
+- **TypeScript**
+- **Tailwind CSS**
+- **ShadCN**
+- **Lucide-react Icons**
+- **React Hook Form**
+- **Fetch API** for backend communication
+
+### Backend (MyJawaaf API)
+
+- Node.js + Express
+- TypeScript
+- MongoDB + Mongoose
+- JWT Auth (HTTP-only cookies)
+- Admin/User role-based middleware
+- Course/category endpoints
+
+---
+
+## ✅ Finished Features
+
+### 🔐 Authentication
+
+- Register & Login with validation
+- Secure JWT auth (HTTP-only cookie)
+- Protected routes using `getCurrentUser()`
+
+### 🛠️ Admin Dashboard
+
+- **Course Categories**
+  - Create / Update / Delete
+- **Courses**
+  - Create / Update / Delete
+- Role-based access via server middleware
+
+---
+
+## 🧩 Upcoming Features
+
+- ✅ User dashboard
+- ✅ Course browsing & filtering
+- ✅ Course enrollment system
+- ✅ Course details with levels, pricing
+- ✅ Language support
+- ✅ Search, pagination
+- ✅ Toast notifications
+
+---
+
+## 📂 Project Structure (Frontend)
+
+```
+/app
+  ├─ (auth)         → Login/Register pages
+  ├─ /dashboard     → Admin dashboard for course/category management
+  ├─ /course        → Add/Edit course routes
+  ├─ layout.tsx     → Shared layout
+
+/components         → UI components (inputs, forms, cards)
+/constants          → Static configs (levels, languages)
+/actions            → Server actions (e.g., courseCreate)
+/lib                → Helpers (e.g., getCurrentUser)
+/hooks              → Custom React hooks
+/public             → Assets (logos, icons)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ⚙️ Local Development
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Clone the repository**
 
-## Learn More
+   ```bash
+   git clone https://github.com/rajansharma001/myjawaaf-frontend.git
+   cd myjawaaf-frontend
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. **Install dependencies**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Create `.env.local`**
 
-## Deploy on Vercel
+   ```env
+   NEXT_PUBLIC_API_URL=https://api.myjawaaf.com  # Your backend base URL
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Start development server**
+   ```bash
+   npm run dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🔗 Backend Repository
+
+👉 **Backend Code:**  
+[github.com/rajansharma001/myjawaaf](https://github.com/rajansharma001/myjawaaf)
+
+> API built using **Node.js, Express, TypeScript, MongoDB**  
+> Handles user auth, course/category CRUD, role management, etc.
+
+---
+
+## 👨‍💻 Author
+
+**Rajan Sharma**  
+Full Stack Developer  
+🔗 [LinkedIn](https://www.linkedin.com/in/rajan-sharma-280764337/)
+
+---
+
+## ⭐️ Show Your Support
+
+If you like this project:
+
+- ⭐ Star the repo
+- 🔁 Share it with developers
+- 💬 Feedback is welcome!
