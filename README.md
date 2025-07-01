@@ -1,6 +1,6 @@
 # 🎓 MyJawaaf – Frontend (Next.js)
 
-**MyJawaaf** is an **online e-learning platform** currently under active development. It allows admins to manage courses and categories, while users will soon be able to browse and enroll in courses. This repository is the **frontend** built using **Next.js 14**, **TypeScript**, and **Tailwind CSS**, fully connected to a custom-built backend API.
+**MyJawaaf** is an **online e-learning platform** currently under active development. It allows admins to manage courses and categories, while users will soon be able to browse and enroll in courses. This repository is the **frontend** built using **Next.js**, **TypeScript**, and **Tailwind CSS**, fully connected to a custom-built backend API.
 
 > 🚧 **Status:** Early-stage development – Authentication and Admin Dashboard are completed. Course browsing, enrollment, and user features are under development.
 
