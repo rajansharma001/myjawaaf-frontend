@@ -23,3 +23,14 @@ export interface CourseProps {
   isPublished: boolean;
   createdBy: string;
 }
+
+export interface LessonProps {
+  _id?: string;
+  title: string;
+  slug: string;
+  videoUrl: string;
+  duration: string;
+  isPreview: false;
+  description: string;
+  courseId: string;
+}

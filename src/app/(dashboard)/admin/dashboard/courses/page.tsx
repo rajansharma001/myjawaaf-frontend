@@ -4,6 +4,7 @@ import { useProtectedRoute } from "../../../../../../context/useProtected";
 import {
   button,
   CourseProps,
+  LessonProps,
 } from "../../../../../../components/dashboard/styles/inputField";
 import { useAuth } from "../../../../../../context/authContext";
 import Image from "next/image";
@@ -20,14 +21,15 @@ const AllCourses = () => {
   useProtectedRoute(["admin"]);
   const { user } = useAuth();
   const [courses, setCourses] = useState<CourseProps[] | null>();
-  const [cat, setCat] = useState([]);
+  const [cat, setCat] = useState<CatProps[]>([]);
 
   const [hasMsg, setHasMsg] = useState(false);
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const [lessonPop, setLessonPop] = useState(false);
   const [updatePop, setUpdatePop] = useState(false);
   const [courseId, setCourseId] = useState("");
+  const [lesson, setLesson] = useState<LessonProps[]>([]);
 
   const getCourse = async () => {
     const res = await fetch(
@@ -53,6 +55,17 @@ const AllCourses = () => {
     setCat(result.fetchCategory);
   };
 
+  const getLesson = async (id: string) => {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/auth/lesson/get-course-lesson/${id}`,
+      {
+        method: "GET",
+        credentials: "include",
+      }
+    );
+    const result = await res.json();
+    setLesson(result.getLessonByCourseId);
+  };
   const handleDelete = async (id: any) => {
     try {
       setLoading(true);
@@ -108,58 +121,72 @@ const AllCourses = () => {
             loading
           </div>
         )}
-        <div className="min-w-fit border border-gray-300 rounded-md">
-          <div className="flex bg-gray-100 font-semibold text-[12px] text-gray-700">
-            <div className="w-40 h-8 flex items-center justify-center border-r border-gray-300">
+        <div className="min-w-fit w-full border border-gray-300 rounded-md">
+          <div className="flex w-full bg-gray-100 font-semibold text-[12px] text-gray-700">
+            <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
+              lesson
+            </div>
+            <div className="w-2/12 h-8 flex items-center justify-center border-r border-gray-300">
               Title
             </div>
-            <div className="w-40 h-8 flex items-center justify-center border-r border-gray-300">
+            <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
               Slug
             </div>
 
-            <div className="w-30 h-8 flex items-center justify-center border-r border-gray-300">
+            <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
               Thumbnail
             </div>
-            <div className="w-30 h-8 flex items-center justify-center border-r border-gray-300">
+            <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
               Category ID
             </div>
-            <div className="w-20 h-8 flex items-center justify-center border-r border-gray-300">
+            <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
               Is Free
             </div>
-            <div className="w-25 h-8 flex items-center justify-center border-r border-gray-300">
+            <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
               Price
             </div>
-            <div className="w-20 h-8 flex items-center justify-center border-r border-gray-300">
+            <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
               Discount
             </div>
-            <div className="w-25 h-8 flex items-center justify-center border-r border-gray-300">
+            <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
               Level
             </div>
-            <div className="w-20 h-8 flex items-center justify-center border-r border-gray-300">
+            <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
               Language
             </div>
-            <div className="w-25 h-8 flex items-center justify-center border-r border-gray-300">
+            <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
               Published
             </div>
 
-            <div className="w-20 h-8 flex items-center justify-center">
+            <div className="w-1/12 h-8 flex items-center justify-center">
               Action
             </div>
           </div>
 
-          <div className="overflow-y-scroll h-150 ">
+          <div className=" ">
             {courses?.map((course) => (
               <div
                 key={course._id}
                 className=" flex text-[12px] text-gray-800 border-t bg-white border-gray-200"
               >
-                <div className="w-40 h-16 flex items-center justify-center border-r border-gray-100 ">
+                <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100 ">
+                  <button
+                    className={`${button}`}
+                    onClick={() => {
+                      getLesson(course._id as string);
+                      setLessonPop(true);
+                    }}
+                  >
+                    View Lesson
+                  </button>
+                </div>
+                <div className="w-2/12 h-16 flex items-center justify-center border-r border-gray-100 ">
                   {course.title}
                 </div>
-                <div className="w-40 h-16 flex items-center justify-center border-r border-gray-100">
+                <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
                   {course.slug}
                 </div>
-                <div className="w-30 h-16 flex items-center justify-center border-r border-gray-100">
+                <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
                   <Image
                     src={`/defaultuser.jpeg`}
                     alt="thumbnail"
@@ -167,30 +194,30 @@ const AllCourses = () => {
                     width={50}
                   />
                 </div>
-                <div className="w-30 h-16 flex items-center justify-center border-r border-gray-100">
+                <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
                   {cat.find((c: CatProps) => c._id === course.categoryId)
                     ?.title || "unknown"}
                 </div>
-                <div className="w-20 h-16 flex items-center justify-center border-r border-gray-100">
+                <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
                   {course.isFree ? "Free" : "Paid"}
                 </div>
-                <div className="w-25 h-16 flex items-center justify-center border-r border-gray-100">
+                <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
                   {course.price}
                 </div>
-                <div className="w-20 h-16 flex items-center justify-center border-r border-gray-100">
+                <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
                   {course.discount}
                 </div>
-                <div className="w-25 h-16 flex items-center justify-center border-r border-gray-100">
+                <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
                   {course.level}
                 </div>
-                <div className="w-20 h-16 flex items-center justify-center border-r border-gray-100">
+                <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
                   {course.language}
                 </div>
-                <div className="w-25 h-16 flex items-center justify-center border-r border-gray-100">
+                <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
                   {course.isPublished ? "Published" : "Unpublished"}
                 </div>
 
-                <div className="w-20 h-16 flex items-center justify-center gap-2">
+                <div className="w-1/12 h-16 flex items-center justify-center gap-2">
                   <button
                     onClick={() => {
                       setUpdatePop(true);
@@ -228,6 +255,86 @@ const AllCourses = () => {
           <UpdateCourse courseId={courseId} updateTable={updateTable} />
         </div>
       )}
+
+      {/* lesson pop */}
+      <div>
+        {lessonPop && (
+          <div className="w-full absolute inset-0 top-0 backdrop-blur-2xl">
+            <div className="flex justify-end items-end">
+              <button
+                onClick={() => setLessonPop(false)}
+                className={`${button}`}
+              >
+                close
+              </button>
+            </div>
+            <div className="min-w-fit border border-gray-300 rounded-md">
+              <div className="flex w-full bg-gray-100 font-semibold text-[12px] text-gray-700">
+                <div className="w-2/12 h-8 flex items-center justify-center border-r border-gray-300">
+                  Title
+                </div>
+                <div className="w-2/12 h-8 flex items-center justify-center border-r border-gray-300">
+                  Slug
+                </div>
+
+                <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
+                  VideoUrl
+                </div>
+                <div className="w-3/12 h-8 flex items-center justify-center border-r border-gray-300">
+                  Course
+                </div>
+                <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
+                  Is Preview
+                </div>
+                <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
+                  duration
+                </div>
+                <div className="w-2/12 h-8 flex items-center justify-center border-r border-gray-300">
+                  description
+                </div>
+              </div>
+
+              <div className="overflow-y-scroll h-150 ">
+                {lesson?.map((lesson) => (
+                  <div
+                    key={lesson._id}
+                    className=" flex  w-full text-[12px] text-gray-800 border-t bg-white border-gray-200"
+                  >
+                    <div className="w-2/12 h-16 flex items-center justify-center border-r border-gray-100 ">
+                      {lesson.title}
+                    </div>
+                    <div className="w-2/12 h-16 flex items-center justify-center border-r border-gray-100">
+                      {lesson.slug}
+                    </div>
+                    <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
+                      <Image
+                        src={`/defaultuser.jpeg`}
+                        alt="videoUrl"
+                        height={50}
+                        width={50}
+                      />
+                    </div>
+                    <div className="w-3/12 h-16 flex items-center justify-center border-r border-gray-100">
+                      {courses?.find(
+                        (c: CourseProps) => c._id === lesson.courseId
+                      )?.title || "unkown"}
+                    </div>
+                    <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
+                      {lesson.isPreview ? "Yes" : "No"}
+                    </div>
+                    <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
+                      {lesson.duration}
+                    </div>
+                    <div className="w-2/12 h-16 flex items-center justify-center border-r border-gray-100">
+                      {lesson.description}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

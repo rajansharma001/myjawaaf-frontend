@@ -18,10 +18,10 @@ const SideBar = () => {
     <aside
       className={`${
         sideOpen ? "w-64" : "w-20"
-      }  bg-gray-900 text-white flex flex-col items-center   relative p-6 transition-all transform duration-300 ease-in`}
+      }  bg-gray-900 text-white flex flex-col   relative p-6 transition-all transform duration-300 ease-in`}
     >
       <button
-        className="absolute  top-5 cursor-pointer "
+        className="w-full cursor-pointer absolute flex items-center justify-center left-0  top-5 :"
         onClick={() => setSideOpen(!sideOpen)}
       >
         {sideOpen ? (
@@ -30,36 +30,28 @@ const SideBar = () => {
           <FaArrowCircleRight size={25} />
         )}
       </button>
-      <div className="w-full mt-10">
-        <Menu />
-      </div>
+
+      {sideOpen ? (
+        <Menu style="" />
+      ) : (
+        <Menu iconStyle="text-xl " style="hidden" />
+      )}
+
       {/* bottom signout */}
 
-      <div className="w-full flex items-center justify-center absolute bottom-0 mt-10">
+      <div className="w-full flex items-center justify-center absolute bottom-0 ">
         <button
           onClick={handleLogout}
-          className="-mt-20 text-[13px] text-gray-300 capitalize cursor-pointer font-semibold "
+          className="-mt-20 -ml-8  text-[13px] w-full text-gray-300 flex items-center justify-center capitalize cursor-pointer font-semibold "
         >
           {sideOpen ? (
-            <p className="flex items-center justify-center gap-2">
+            <p className="flex  gap-2">
               <IoLogOutOutline size={20} /> logout
             </p>
           ) : (
             <IoLogOutOutline size={20} />
           )}
         </button>
-      </div>
-      <div className="w-full flex flex-col justify-center items-center text-[12px] text-gray-300 capitalize font-semibold">
-        <Link href="/#" className="flex gap-2 items-center  justify-center">
-          {sideOpen ? (
-            <HiHome size={15} className="hidden" />
-          ) : (
-            <div>
-              <HiHome size={15} />
-              <p>Home</p>
-            </div>
-          )}
-        </Link>
       </div>
     </aside>
   );

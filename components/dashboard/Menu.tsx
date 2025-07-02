@@ -1,32 +1,56 @@
+"use client";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import { BiHome, BiListCheck, BiVideo, BiVideoPlus } from "react-icons/bi";
+import { MdManageSearch } from "react-icons/md";
+import { SiCratedb } from "react-icons/si";
 
-const Menu = () => {
+interface Props {
+  style?: string;
+  iconStyle?: string;
+}
+const Menu = ({ style, iconStyle }: Props) => {
   return (
-    <div className="w-full flex flex-col ml-8 mt-8 gap-3">
-      <Link
-        href="/admin/dashboard"
-        className=" text-[13px] text-gray-200 capitalize font-semibold"
-      >
-        Dashboard
+    <div className="w-full flex flex-col mt-16 gap-6 justify-start capitalize text-[13px]">
+      <Link href="/admin/dashboard" className={`flex gap-2 items-center `}>
+        <BiHome className={`${iconStyle}`} />{" "}
+        <span className={`${style}`}>Dashboard</span>
       </Link>
       <Link
         href="/admin/dashboard/course"
-        className=" text-[13px] text-gray-200 capitalize font-semibold"
+        className={`flex gap-2 items-center `}
       >
-        Create new Course
+        <SiCratedb className={`${iconStyle}`} />
+        <span className={`${style}`}>Create new Course</span>
       </Link>
       <Link
         href="/admin/dashboard/courses"
-        className=" text-[13px] text-gray-200 capitalize font-semibold"
+        className={`flex gap-2 items-center `}
       >
-        All Courses
+        <BiListCheck className={`${iconStyle}`} />
+        <span className={`${style}`}>All Courses</span>
       </Link>
       <Link
         href="/admin/dashboard/category"
-        className=" text-[13px] text-gray-200 capitalize font-semibold"
+        className={`flex gap-2 items-center `}
       >
-        Manage Category
+        <MdManageSearch className={`${iconStyle}`} />
+        <span className={`${style}`}> Manage Category</span>
+      </Link>
+      <Link
+        href="/admin/dashboard/lesson"
+        className={`flex gap-2 items-center `}
+      >
+        <BiVideo className={`${iconStyle}`} />
+        <span className={`${style}`}>create new lesson</span>
+      </Link>
+
+      <Link
+        href="/admin/dashboard/lessons"
+        className={`flex gap-2 items-center `}
+      >
+        <BiVideoPlus className={`${iconStyle}`} />
+        <span className={`${style}`}>All lessons</span>
       </Link>
     </div>
   );
