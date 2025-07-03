@@ -16,12 +16,13 @@ const Lesson = () => {
   const [loading, setLoading] = useState(false);
   const [hasMsg, setHasMsg] = useState(false);
   const [msg, setMsg] = useState("");
+  const [previewUrl, setPreviewUrl] = useState<string>("");
 
   const [course, setCourse] = useState<CourseProps[] | null>([]);
   const [formData, setFormData] = useState<LessonProps>({
     title: "",
     slug: "",
-    videoUrl: "",
+    videoUrl: "undefined",
     duration: "",
     isPreview: false,
     description: "",
@@ -33,11 +34,18 @@ const Lesson = () => {
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | any
     >
   ) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, type, checked, files } = e.target;
 
     setFormData((prev) => {
       if (type === "checkbox") {
         return { ...prev, [name]: checked };
+      } else if (type === "file" && files) {
+        return { ...prev, [name]: files[0] };
+      }
+      const file = e.target.files?.[0];
+      if (file) {
+        setPreviewUrl(URL.createObjectURL(file));
+        setFormData((prev) => ({ ...prev, videoUrl: file }));
       }
       return { ...prev, [name]: value };
     });
@@ -53,18 +61,25 @@ const Lesson = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    const form = new FormData();
+    form.append("title", formData.title),
+      form.append("slug", formData.slug),
+      form.append("videoUrl", formData.videoUrl),
+      form.append("isPreview", String(formData.isPreview)),
+      form.append("duration", formData.duration),
+      form.append("description", formData.description),
+      form.append("courseId", formData.courseId),
+      e.preventDefault();
     try {
       setLoading(true);
+
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/auth/lesson/create-lesson`,
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+
           credentials: "include",
-          body: JSON.stringify(formData),
+          body: form,
         }
       );
       const result = await res.json();
@@ -164,13 +179,19 @@ const Lesson = () => {
                 <label htmlFor="videoUrl" className={`${lable}`}>
                   videoUrl
                 </label>
+                {previewUrl && (
+                  <img
+                    src={previewUrl}
+                    alt="Preview"
+                    className="w-32 h-32 object-cover"
+                  />
+                )}
                 <input
-                  type="text"
+                  type="file"
                   name="videoUrl"
                   className={`${input}`}
-                  value={formData.videoUrl}
+                  accept="video/*"
                   onChange={handleChange}
-                  placeholder="videoUrl"
                 />
               </div>
               <div className="w-3/12">

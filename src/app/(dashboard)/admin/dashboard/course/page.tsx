@@ -31,7 +31,6 @@ const Course = () => {
     level: "",
     language: "",
     isPublished: false,
-    createdBy: user._id,
   });
   const getCat = async () => {
     const res = await fetch(
@@ -54,18 +53,33 @@ const Course = () => {
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | any
     >
   ) => {
-    const { name, type, value, checked } = e.target;
+    const { name, type, value, checked, files } = e.target;
 
     setFormData((prev) => {
       if (type === "checkbox") {
         return { ...prev, [name]: checked }; // boolean
-      }
-      return { ...prev, [name]: value }; // string/number
+      } else if (type === "file" && files) {
+        return { ...prev, [name]: files[0] };
+      } else return { ...prev, [name]: value }; // string/number
     });
   };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+
+    const form = new FormData();
+    form.append("title", formData.title);
+    form.append("slug", formData.slug);
+    form.append("description", formData.description);
+    form.append("thumbnail", formData.thumbnail); // 👈 File object
+    form.append("categoryId", formData.categoryId);
+    form.append("isFree", String(formData.isFree));
+    form.append("price", formData.price);
+    form.append("discount", formData.discount);
+    form.append("level", formData.level);
+    form.append("language", formData.language);
+    form.append("isPublished", String(formData.isPublished));
     try {
       setLoading(true);
 
@@ -74,10 +88,8 @@ const Course = () => {
         {
           method: "POST",
           credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
+
+          body: form,
         }
       );
       const result = await res.json();
@@ -101,7 +113,6 @@ const Course = () => {
           level: "",
           language: "",
           isPublished: false,
-          createdBy: user._id,
         });
       }
     } catch (error) {
@@ -109,6 +120,7 @@ const Course = () => {
     }
   };
 
+  console.log(formData);
   setTimeout(() => {
     setHasMsg(false);
   }, 3000);
@@ -128,6 +140,7 @@ const Course = () => {
         </div>
       ) : (
         <form
+          encType="multipart/form-data"
           onSubmit={handleSubmit}
           className="w-full flex flex-col gap-5 items-center justify-center"
         >
@@ -164,14 +177,12 @@ const Course = () => {
               <label className={`${lable}`} htmlFor="thumbnail">
                 Thumbnail URL
               </label>
+
               <input
                 className={`${input}`}
-                value={formData.thumbnail}
+                type="file"
                 onChange={handleChange}
-                type="text"
-                id="thumbnail"
                 name="thumbnail"
-                placeholder="course thumbnail"
               />
             </div>
           </div>

@@ -188,7 +188,7 @@ const AllCourses = () => {
                 </div>
                 <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
                   <Image
-                    src={`/defaultuser.jpeg`}
+                    src={`http://localhost:4000/${course.thumbnail}`}
                     alt="thumbnail"
                     height={50}
                     width={50}
@@ -307,11 +307,10 @@ const AllCourses = () => {
                       {lesson.slug}
                     </div>
                     <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
-                      <Image
-                        src={`/defaultuser.jpeg`}
-                        alt="videoUrl"
-                        height={50}
-                        width={50}
+                      <video
+                        className="h-15 w-[80%]"
+                        controls
+                        src={`http://localhost:4000/uploads/${lesson.videoUrl}`}
                       />
                     </div>
                     <div className="w-3/12 h-16 flex items-center justify-center border-r border-gray-100">

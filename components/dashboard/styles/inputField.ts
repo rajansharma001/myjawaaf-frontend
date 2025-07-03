@@ -21,7 +21,6 @@ export interface CourseProps {
   level: string;
   language: string;
   isPublished: boolean;
-  createdBy: string;
 }
 
 export interface LessonProps {
@@ -30,7 +29,7 @@ export interface LessonProps {
   slug: string;
   videoUrl: string;
   duration: string;
-  isPreview: false;
+  isPreview: boolean;
   description: string;
   courseId: string;
 }
