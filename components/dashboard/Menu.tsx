@@ -1,7 +1,13 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
-import { BiHome, BiListCheck, BiVideo, BiVideoPlus } from "react-icons/bi";
+import {
+  BiAddToQueue,
+  BiHome,
+  BiListCheck,
+  BiVideo,
+  BiVideoPlus,
+} from "react-icons/bi";
 import { MdManageSearch } from "react-icons/md";
 import { SiCratedb } from "react-icons/si";
 
@@ -51,6 +57,13 @@ const Menu = ({ style, iconStyle }: Props) => {
       >
         <BiVideoPlus className={`${iconStyle}`} />
         <span className={`${style}`}>All lessons</span>
+      </Link>
+      <Link
+        href="/admin/dashboard/enroll"
+        className={`flex gap-2 items-center `}
+      >
+        <BiAddToQueue className={`${iconStyle}`} />
+        <span className={`${style}`}>Enroll</span>
       </Link>
     </div>
   );

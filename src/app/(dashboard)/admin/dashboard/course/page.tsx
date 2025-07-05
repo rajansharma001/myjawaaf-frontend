@@ -88,7 +88,6 @@ const Course = () => {
         {
           method: "POST",
           credentials: "include",
-
           body: form,
         }
       );

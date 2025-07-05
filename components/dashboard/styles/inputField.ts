@@ -33,3 +33,40 @@ export interface LessonProps {
   description: string;
   courseId: string;
 }
+
+export interface LessonProps {
+  _id?: string;
+  title: string;
+  slug: string;
+  videoUrl: string;
+  duration: string;
+  isPreview: boolean;
+  description: string;
+  courseId: string;
+}
+
+export interface UserProps {
+  _id?: string;
+  fullname: string;
+  email: string;
+  password: string;
+  phone: string;
+  progress: string;
+  role: string;
+  isVerified: boolean;
+  profileImg: string;
+  bio: string;
+  country: string;
+  notification: string;
+}
+
+export interface enrollProps {
+  _id?: string;
+  userId: string;
+  courseId: string;
+  isFree: boolean;
+  amountPaid: string;
+  receipt: string;
+  paymentId: string;
+  hasAccess: boolean;
+}
