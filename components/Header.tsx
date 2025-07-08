@@ -7,13 +7,29 @@ import { IoCartOutline } from "react-icons/io5";
 import { PiBell, PiGraduationCap, PiHeart } from "react-icons/pi";
 import { useAuth } from "../context/authContext";
 import Image from "next/image";
+import { CategoryProps } from "./dashboard/styles/inputField";
 
 const Header = () => {
   const { user, logoutUser } = useAuth();
+
   const handleLogout = async () => {
     await logoutUser();
     redirect("/");
   };
+
+  const [cats, setCats] = useState<CategoryProps[]>([]);
+
+  const category = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/category`, {
+      method: "GET",
+    });
+    const result = await res.json();
+    setCats(result.getCat);
+  };
+
+  useEffect(() => {
+    category();
+  }, []);
 
   return (
     <div className="flex justify-between items-center w-full h-[60px] px-6 py-10 border-b-2 border-gray-200">
@@ -28,26 +44,21 @@ const Header = () => {
           <select
             id="select-cat"
             name="select-cat"
-            className="w-full text-[12px] p-2 text-gray border-1 border-gray-300 focus:outline-none"
+            className="w-full text-[12px] p-2 text-gray-500 border-1 border-gray-300 focus:outline-none"
           >
             <option className="" value="Web Dev">
               Browse Category
             </option>
-            <option className="" value="Web Dev">
-              Web Dev
-            </option>
-            <option className="" value="Mov Dev">
-              Mov Dev
-            </option>
-            <option className="" value="Backend ">
-              Backend
-            </option>
-            <option className="" value="Frontend ">
-              Frontend
-            </option>
-            <option className="" value="Full Stack">
-              Full Stack
-            </option>
+            {cats &&
+              cats.map((cat) => (
+                <option
+                  key={cat._id}
+                  className="p-6 hover:bg-primary-500"
+                  value={cat._id}
+                >
+                  {cat.title}
+                </option>
+              ))}
           </select>
         </div>
         <div className="flex flex-6/12 ">

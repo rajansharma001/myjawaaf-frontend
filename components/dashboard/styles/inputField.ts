@@ -1,5 +1,5 @@
 export const input =
-  "w-full text-[13px] text-gray-600 capitalize focus:outline-none border-1 border-gray-300 p-2 bg-white";
+  "w-full text-[13px] text-gray-600  focus:outline-none border-1 border-gray-300 p-2 bg-white";
 export const lable = "w-full text-[13px] text-gray-600 capitalize";
 
 export const button =
@@ -21,6 +21,8 @@ export interface CourseProps {
   level: string;
   language: string;
   isPublished: boolean;
+  studentCount: number;
+  createdBy: string;
 }
 
 export interface LessonProps {
@@ -69,4 +71,11 @@ export interface enrollProps {
   receipt: string;
   paymentId: string;
   hasAccess: boolean;
+}
+
+export interface CategoryProps {
+  _id?: string;
+  title: string;
+  slug: string;
+  description: string;
 }

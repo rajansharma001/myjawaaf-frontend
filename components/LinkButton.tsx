@@ -8,10 +8,10 @@ interface Props {
 }
 const LinkButton = ({ title, link }: Props) => {
   return (
-    <div>
+    <div className="w-full">
       <Link
         href={link}
-        className="py-1.5 px-3 bg-primary-500 flex w-fit items-center justify-center text-[12px] hover:bg-primary-300 hover:text-primary-500 cursor-pointer text-white capitalize font-semibold transition-all transform ease-in duration-300"
+        className="py-1.5 px-3 w-full bg-primary-500 flex items-center justify-center text-[12px] hover:bg-primary-300 hover:text-primary-500 cursor-pointer text-white capitalize font-semibold transition-all transform ease-in duration-300"
       >
         {title}
       </Link>

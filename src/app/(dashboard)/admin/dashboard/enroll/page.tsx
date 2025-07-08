@@ -36,8 +36,7 @@ const Enroll = () => {
   const [formData, setFormData] = useState({
     userId: "",
     courseId: "",
-    isFree: false,
-    price: "",
+
     receipt: "",
   });
 
@@ -104,8 +103,6 @@ const Enroll = () => {
     const form = new FormData();
     form.append("userId", formData.userId);
     form.append("courseId", formData.courseId);
-    form.append("isFree", String(formData.isFree));
-    form.append("price", formData.price);
     form.append("receipt", formData.receipt);
     try {
       setLoading(true);
@@ -265,7 +262,7 @@ const Enroll = () => {
                         </label>
                         <input
                           type="text"
-                          value={formData.isFree ? "Free" : "Paid"}
+                          value={courseById.isFree ? "Free" : "Paid"}
                           className={`${input}`}
                           readOnly
                         />
@@ -278,8 +275,7 @@ const Enroll = () => {
                         <input
                           type="text"
                           name="price"
-                          onChange={handleChange}
-                          value={formData.price}
+                          value={courseById.price}
                           className={`${input} `}
                           readOnly
                         />
@@ -326,6 +322,8 @@ const Enroll = () => {
           <thead className="">
             <tr>
               <th className="border border-gray-300 p-2 ">S.No.</th>
+              <th className="border border-gray-300 p-2 ">payment id</th>
+              <th className="border border-gray-300 p-2 ">Amount</th>
               <th className="border border-gray-300 p-2 ">Course</th>
               <th className="border border-gray-300 p-2 ">User</th>
               <th className="border border-gray-300 p-2 ">Receipt</th>
@@ -338,6 +336,12 @@ const Enroll = () => {
               enrolls.map((enroll, index) => (
                 <tr key={enroll._id} className="text-center">
                   <td className="border border-gray-300 p-2 ">{index + 1}</td>
+                  <td className="border border-gray-300 p-2 ">
+                    {enroll.paymentId}
+                  </td>
+                  <td className="border border-gray-300 p-2 ">
+                    {enroll.amountPaid}
+                  </td>
                   <td className="border border-gray-300 p-2 ">
                     {courses.find((c) => c._id === enroll.courseId)?.title}
                   </td>

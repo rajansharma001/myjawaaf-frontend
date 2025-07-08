@@ -14,7 +14,6 @@ import { CiSettings } from "react-icons/ci";
 
 const Course = () => {
   useProtectedRoute(["admin"]);
-  const { user } = useAuth();
   const [hasMsg, setHasMsg] = useState(false);
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
