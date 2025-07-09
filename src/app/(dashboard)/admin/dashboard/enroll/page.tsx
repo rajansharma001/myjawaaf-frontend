@@ -56,7 +56,7 @@ const Enroll = () => {
 
   const getCourse = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/auth/course/get-course`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/course/get-course`,
       {
         method: "GET",
         credentials: "include",
@@ -68,7 +68,7 @@ const Enroll = () => {
 
   const getUser = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/auth/get-user`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/get-user`,
       {
         method: "GET",
         credentials: "include",
@@ -108,7 +108,7 @@ const Enroll = () => {
       setLoading(true);
 
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/enroll/enroll-course`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/enroll/enroll-course`,
         {
           method: "POST",
           credentials: "include",
@@ -134,7 +134,7 @@ const Enroll = () => {
 
   const getEnroll = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/auth/enroll/get-enrolled`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/enroll/get-enrolled`,
       {
         method: "GET",
         credentials: "include",
@@ -151,7 +151,7 @@ const Enroll = () => {
     setLoading(true);
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/enroll/delete-enrolled/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/enroll/delete-enrolled/${id}`,
         {
           method: "DELETE",
           credentials: "include",
@@ -351,14 +351,14 @@ const Enroll = () => {
                   <td className="border border-gray-300 p-2  items-center justify-center ">
                     <div className="flex gap-2 items-center justify-center  ">
                       <Image
-                        src={`http://localhost:4000/${enroll.receipt}`}
+                        src={`${process.env.NEXT_PUBLIC_API_URL}/${enroll.receipt}`}
                         alt={enroll.courseId}
                         width={160}
                         height={160}
                         onClick={() => {
                           setPopReceipt(!popReceipt);
                           setReceiptUrl(
-                            `http://localhost:4000/${enroll.receipt}`
+                            `${process.env.NEXT_PUBLIC_API_URL}/${enroll.receipt}`
                           );
                         }}
                         className={`cursor-pointer h-15`}

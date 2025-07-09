@@ -45,7 +45,7 @@ const Purchase = () => {
   const getCourse = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/course/${courseId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/course/${courseId}`,
         { method: "GET" }
       );
       const result = await res.json();
@@ -76,7 +76,7 @@ const Purchase = () => {
     try {
       setLoading(true);
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/enroll/enroll-course`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/enroll/enroll-course`,
         { method: "POST", credentials: "include", body: form }
       );
       const result = await res.json();
@@ -97,7 +97,7 @@ const Purchase = () => {
   const getEnrolls = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/enrollments`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/enrollments`,
         { method: "GET", credentials: "include" }
       );
       const result = await res.json();
@@ -160,7 +160,7 @@ const Purchase = () => {
 
             <div className="w-full flex flex-col">
               <Image
-                src={`http://localhost:4000/${course?.thumbnail}`}
+                src={`${process.env.NEXT_PUBLIC_API_URL}/${course?.thumbnail}`}
                 alt={`${course?.title}`}
                 width={400}
                 height={400}
@@ -219,18 +219,27 @@ const Purchase = () => {
             </div>
           </div>
         </div>
-        {enroll && enroll?.some((e: any) => e.courseId === courseId) ? (
+        {enroll && enroll?.some((e: enrollProps) => e.courseId === courseId) ? (
           <div className="w-[50%]">
             <div className="w-full flex flex-col gap-6 ">
               <div className="shadow-lg shadow-gray-500 border-2 border-gray-300 p-6 gap-3 flex flex-col">
-                <h1 className="  text-gray-600 font-semibold text-[13px] text-center">
-                  You are already enrolled this course. Please proceed to
-                  learning.
-                </h1>
-                <LinkButton
-                  link={`/courses/course-preview/${courseId}`}
-                  title={"Continue Learning"}
-                />
+                {enroll && enroll?.some((e) => e.hasAccess !== false) ? (
+                  <div className="w-full">
+                    <h1 className="  text-gray-600 font-semibold text-[13px] text-center">
+                      You are already enrolled this course. Please proceed to
+                      learning.
+                    </h1>
+                    <LinkButton
+                      link={`/courses/course-preview/${courseId}/learn`}
+                      title={"Continue Learning"}
+                    />
+                  </div>
+                ) : (
+                  <h1 className="text-[13px] text-gray-500">
+                    You are already enrolled this course. Please wait for your
+                    payment verification. <br /> OR contact support.
+                  </h1>
+                )}
               </div>
             </div>
           </div>

@@ -7,7 +7,7 @@ import { IoCartOutline } from "react-icons/io5";
 import { PiBell, PiGraduationCap, PiHeart } from "react-icons/pi";
 import { useAuth } from "../context/authContext";
 import Image from "next/image";
-import { CategoryProps } from "./dashboard/styles/inputField";
+import { CategoryProps, UserProps } from "./dashboard/styles/inputField";
 
 const Header = () => {
   const { user, logoutUser } = useAuth();
@@ -18,14 +18,34 @@ const Header = () => {
   };
 
   const [cats, setCats] = useState<CategoryProps[]>([]);
+  const [profileMenu, setProfileMenu] = useState(false);
 
   const category = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/category`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/category`, {
       method: "GET",
     });
     const result = await res.json();
     setCats(result.getCat);
   };
+
+  const [userDetails, setUserDetails] = useState<UserProps>();
+
+  const getUser = async () => {
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/userid`, {
+        method: "GET",
+        credentials: "include",
+      });
+      const result = await res.json();
+      setUserDetails(result.getUserById);
+      console.log("result : ", result.getUserById);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getUser();
+  }, []);
 
   useEffect(() => {
     category();
@@ -102,14 +122,28 @@ const Header = () => {
             </Link>
           </div>
         ) : (
-          <div className="flex justify-center items-center gap-4">
+          <div className="flex justify-center items-center gap-4 relative">
             <Image
+              src={`${process.env.NEXT_PUBLIC_API_URL}/${userDetails?.profileImg}`}
               alt="userImg"
-              src="/defaultuser.jpeg"
-              height={40}
               width={50}
-              className="rounded-full border-2 border-gray-300"
+              height={50}
+              className=" rounded-full w-10 h-10 object-cover border-2 border-gray-400 cursor-pointer "
+              onClick={() => setProfileMenu(!profileMenu)}
             />
+            {/* profile click menu */}
+
+            {profileMenu && (
+              <div className="gap-3 absolute inset-0  h-30 z-10 w-fit  -left-20 mt-2  p-4 rounded-xl bg-gray-800 flex flex-col text-gray-200 text-[13px]  transition-all transform translate-y-13 duration-300 ease-in">
+                <div>{user?.email}</div>
+                <div>Profile</div>
+                <div>
+                  <button className="cursor-pointer" onClick={handleLogout}>
+                    Logout
+                  </button>
+                </div>
+              </div>
+            )}
             <button
               onClick={handleLogout}
               className="py-1.5 px-3 bg-primary-300 text-[12px] hover:bg-primary-500 hover:text-white cursor-pointer text-primary-500 capitalize font-semibold transition-all transform ease-in duration-300"

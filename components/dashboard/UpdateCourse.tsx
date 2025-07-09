@@ -44,7 +44,7 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
 
   const getCourse = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/auth/course/get-course/${courseId}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/course/get-course/${courseId}`,
       {
         method: "GET",
         credentials: "include",
@@ -69,7 +69,7 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
 
   const getCat = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/auth/category/get-category`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/category/get-category`,
       {
         method: "GET",
         credentials: "include",
@@ -98,7 +98,7 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
     e.preventDefault();
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/course/update-course/${courseId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/course/update-course/${courseId}`,
         {
           headers: {
             "Content-Type": "application/json",

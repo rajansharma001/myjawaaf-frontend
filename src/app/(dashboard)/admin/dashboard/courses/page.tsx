@@ -33,7 +33,7 @@ const AllCourses = () => {
 
   const getCourse = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/auth/course/get-course`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/course/get-course`,
       {
         method: "GET",
         credentials: "include",
@@ -45,7 +45,7 @@ const AllCourses = () => {
 
   const getCat = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/auth/category/get-category`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/category/get-category`,
       {
         method: "GET",
         credentials: "include",
@@ -57,7 +57,7 @@ const AllCourses = () => {
 
   const getLesson = async (id: string) => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/auth/lesson/get-course-lesson/${id}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/lesson/get-course-lesson/${id}`,
       {
         method: "GET",
         credentials: "include",
@@ -70,7 +70,7 @@ const AllCourses = () => {
     try {
       setLoading(true);
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/course/delete-course/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/course/delete-course/${id}`,
         {
           method: "DELETE",
           credentials: "include",
@@ -188,7 +188,7 @@ const AllCourses = () => {
                 </div>
                 <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
                   <Image
-                    src={`http://localhost:4000/${course.thumbnail}`}
+                    src={`${process.env.NEXT_PUBLIC_API_URL}/${course.thumbnail}`}
                     alt="thumbnail"
                     height={50}
                     width={50}
@@ -310,7 +310,7 @@ const AllCourses = () => {
                       <video
                         className="h-15 w-[80%]"
                         controls
-                        src={`http://localhost:4000/uploads/${lesson.videoUrl}`}
+                        src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${lesson.videoUrl}`}
                       />
                     </div>
                     <div className="w-3/12 h-16 flex items-center justify-center border-r border-gray-100">

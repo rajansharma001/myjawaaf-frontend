@@ -27,7 +27,7 @@ const Lessons = () => {
   const getLesson = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/lesson/get-lesson`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/lesson/get-lesson`,
         {
           method: "GET",
           credentials: "include",
@@ -42,7 +42,7 @@ const Lessons = () => {
   const getCourse = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/course/get-course`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/course/get-course`,
         {
           method: "GET",
           credentials: "include",
@@ -60,7 +60,7 @@ const Lessons = () => {
     try {
       setLoading(true);
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/lesson/delete-lesson/${lessonId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/lesson/delete-lesson/${lessonId}`,
         {
           method: "DELETE",
           credentials: "include",
@@ -151,7 +151,7 @@ const Lessons = () => {
                   <video
                     className="h-15 w-[80%]"
                     controls
-                    src={`http://localhost:4000/uploads/${lesson.videoUrl}`}
+                    src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${lesson.videoUrl}`}
                   />
                 </div>
                 <div className="w-50 h-16 flex items-center justify-center border-r border-gray-100">

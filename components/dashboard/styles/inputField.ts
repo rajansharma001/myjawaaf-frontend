@@ -21,8 +21,9 @@ export interface CourseProps {
   level: string;
   language: string;
   isPublished: boolean;
-  studentCount: number;
-  createdBy: string;
+  studentCount?: number;
+  createdBy?: string;
+  hasAccess?: boolean;
 }
 
 export interface LessonProps {
@@ -50,16 +51,16 @@ export interface LessonProps {
 export interface UserProps {
   _id?: string;
   fullname: string;
-  email: string;
-  password: string;
+  email?: string;
+  password?: string;
   phone: string;
-  progress: string;
-  role: string;
-  isVerified: boolean;
+  progress?: string;
+  role?: string;
+  isVerified?: boolean;
   profileImg: string;
   bio: string;
   country: string;
-  notification: string;
+  notification?: string;
 }
 
 export interface enrollProps {

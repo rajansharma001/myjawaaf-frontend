@@ -32,14 +32,17 @@ const Signin = () => {
   const handleSubmit = async (e: FormEvent) => {
     setIsLoading(true);
     e.preventDefault();
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/signin`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-      body: JSON.stringify(formData),
-      credentials: "include",
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/signin`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify(formData),
+        credentials: "include",
+      }
+    );
     const result = await res.json();
     if (!res.ok) {
       setIsLoading(false);

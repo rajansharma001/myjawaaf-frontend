@@ -42,7 +42,7 @@ const PreviewCourse = () => {
 
   const getUsers = async () => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users`, {
         method: "GET",
       });
       const result = await res.json();
@@ -55,7 +55,7 @@ const PreviewCourse = () => {
   const getEnrolls = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/enrollments`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/enrollments`,
         { method: "GET", credentials: "include" }
       );
       const result = await res.json();
@@ -67,7 +67,7 @@ const PreviewCourse = () => {
   const getCourse = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/course/${courseId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/course/${courseId}`,
         { method: "GET" }
       );
       const result = await res.json();
@@ -80,7 +80,7 @@ const PreviewCourse = () => {
   const getLesson = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/lesson/${courseId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/lesson/${courseId}`,
         {
           method: "GET",
         }
@@ -141,13 +141,13 @@ const PreviewCourse = () => {
               <video
                 controls
                 className="w-full"
-                src={`http://localhost:4000/uploads/${previewVideoUrl}`}
+                src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${previewVideoUrl}`}
               ></video>
             ) : (
               <video
                 controls
                 className="w-full"
-                src={`http://localhost:4000/uploads/${previewUrl}`}
+                src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${previewUrl}`}
               ></video>
             )}
           </div>
@@ -315,7 +315,10 @@ const PreviewCourse = () => {
           {enrolls &&
           enrolls.find((e) => e.courseId === course?._id)?.userId ? (
             <div className="w-full p-2">
-              <LinkButton link="/#" title={"Continue Learning"} />
+              <LinkButton
+                link={`/courses/course-preview/${course?._id}/learn`}
+                title={"Continue Learning"}
+              />
             </div>
           ) : (
             <div className="w-full flex justify-between items-center p-2">

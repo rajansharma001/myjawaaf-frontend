@@ -42,7 +42,7 @@ const Header = () => {
           {/* profile click menu */}
 
           {profileMenu && (
-            <div className="absolute inset-0 -ml-40 h-30  w-[13vw] items-start justify-between p-4 rounded-xl bg-gray-800 flex flex-col text-gray-200 text-[13px]  transition-all transform translate-y-13 duration-300 ease-in">
+            <div className="absolute inset-0 -ml-40 h-30 z-10 w-[13vw] items-start justify-between p-4 rounded-xl bg-gray-800 flex flex-col text-gray-200 text-[13px]  transition-all transform translate-y-13 duration-300 ease-in">
               <div>{user?.email}</div>
               <div>Profile</div>
               <button className="cursor-pointer" onClick={handleLogout}>
