@@ -32,18 +32,18 @@ const CourseCategoryCard = () => {
   }, []);
 
   return (
-    <div className="w-full flex flex-col gap-4 justify-center items-center py-16">
+    <div className="w-full flex flex-col gap-4 justify-center items-center py-6 md:py-12 lg:py-16">
       <div>
         <h1 className="text-2xl py-3 text-heading capitalize font-semibold">
           Browse top category
         </h1>
       </div>
-      <div className="w-[80%] flex justify-center items-center gap-4">
+      <div className="lg:w-[80%] p-2 md:w-[80%] w-full flex justify-center items-center gap-2">
         {cats &&
           cats.map((cat) => (
             <div
               key={cat._id}
-              className="w-2/12 px-2 py-5 flex  justify-center gap-4 bg-primary-500 text-white hover:shadow-sm hover:shadow-purple-500 transition-all hover:-translate-y-2 duration-300 ease-out cursor-pointer"
+              className="w-full px-1 py-5 flex  justify-center gap-2 bg-primary-500 text-white hover:shadow-sm hover:shadow-purple-500 transition-all hover:-translate-y-2 duration-300 ease-out cursor-pointer"
             >
               <div className="flex flex-col justify-center">
                 <div className="text-[12px] font-semibold capitalize">

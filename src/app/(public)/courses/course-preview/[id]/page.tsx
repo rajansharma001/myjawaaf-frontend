@@ -101,16 +101,16 @@ const PreviewCourse = () => {
   }, []);
 
   return (
-    <div className="w-full flex justify-center items-center py-10 relative flex-col ">
+    <div className="w-full flex justify-center items-center  relative flex-col  ">
       <div className="w-full p-0 ">
         <PageHeader path={path} title={course?.title} />
       </div>
-      <div className="w-[80%] flex justify-center  sticky gap-12">
-        <div className="w-8/12 flex flex-col py-4 px-6 gap-3">
-          <h1 className="text-[24px] text-gray-700 capitalize font-semibold">
+      <div className="w-full lg:w-[80%] md:w-full flex flex-col lg:flex-row md:flex-row justify-center  sticky gap-6 p-1 lg:p-6 md:p-6">
+        <div className="w-full  lg:w-8/12 md:w-8/12 flex flex-col py-4 px-3 gap-3">
+          <h1 className="text-[16px] lg:text-[24px] md:text-[20px] text-gray-700 capitalize font-semibold">
             {course?.title}
           </h1>
-          <p className="text-[13px] text-gray-500 font-medium capitalize">
+          <p className="text-[12px] lg:text-[13px] md:text-[13px] text-gray-500 font-medium capitalize">
             {course?.description.split(" ").slice(0, 20).join(" ") + "..."}
           </p>
           <div className="w-full flex justify-between mt-5">
@@ -152,7 +152,7 @@ const PreviewCourse = () => {
             )}
           </div>
 
-          <div className="w-full flex justify-between p-2 px-6 border-b-1 border-gray-200">
+          <div className="w-full flex justify-between p-2 px-1 border-b-1 border-gray-200">
             <button
               onClick={() => {
                 setOverView(true);
@@ -160,7 +160,7 @@ const PreviewCourse = () => {
                 setInstructor(false);
                 setReview(false);
               }}
-              className="text-[14px] w-3/12 text-left text-gray-600 capitalize cursor-pointer hover:text-primary-500 transition-all duration-300 ease-in-out"
+              className="text-[12px] lg:text-[13px] md:text-[13px] w-3/12 text-left text-gray-600 capitalize cursor-pointer hover:text-primary-500 transition-all duration-300 ease-in-out"
             >
               Overview
             </button>
@@ -171,7 +171,7 @@ const PreviewCourse = () => {
                 setInstructor(false);
                 setReview(false);
               }}
-              className="text-[14px] w-3/12 text-center text-gray-600 capitalize cursor-pointer hover:text-primary-500 transition-all duration-300 ease-in-out"
+              className="text-[12px] lg:text-[13px] md:text-[13px] w-3/12 text-center text-gray-600 capitalize cursor-pointer hover:text-primary-500 transition-all duration-300 ease-in-out"
             >
               Course Content
             </button>
@@ -182,7 +182,7 @@ const PreviewCourse = () => {
                 setInstructor(true);
                 setReview(false);
               }}
-              className="text-[14px] w-3/12 text-center text-gray-600 capitalize cursor-pointer hover:text-primary-500 transition-all duration-300 ease-in-out"
+              className="text-[12px] lg:text-[13px] md:text-[13px] w-3/12 text-center text-gray-600 capitalize cursor-pointer hover:text-primary-500 transition-all duration-300 ease-in-out"
             >
               Instructor
             </button>
@@ -193,7 +193,7 @@ const PreviewCourse = () => {
                 setInstructor(false);
                 setReview(true);
               }}
-              className="text-[14px] w-3/12 text-right text-gray-600 capitalize cursor-pointer hover:text-primary-500 transition-all duration-300 ease-in-out"
+              className="text-[12px] lg:text-[13px] md:text-[13px] w-3/12 text-right text-gray-600 capitalize cursor-pointer hover:text-primary-500 transition-all duration-300 ease-in-out"
             >
               Review
             </button>
@@ -203,14 +203,14 @@ const PreviewCourse = () => {
               <h1 className="text-md  py-3 capitalize text-gray-600 font-semibold">
                 Description
               </h1>
-              <p className="text-[13px] text-gray-500 capitalize text-justify">
+              <p className="text-[12px] lg:text-[13px] md:text-[13px] text-gray-500 capitalize text-justify">
                 {course?.description}
               </p>
             </div>
           )}
           {curriculum && (
-            <div className="py-4 w-full flex flex-col">
-              <h1 className="text-md py-3 capitalize text-gray-600 font-semibold">
+            <div className="py-2 w-full flex flex-col">
+              <h1 className="text-md py-2 capitalize text-gray-600 font-semibold">
                 Course Content
               </h1>
 
@@ -221,7 +221,7 @@ const PreviewCourse = () => {
                   lessons.map((lesson) => (
                     <div
                       key={lesson._id}
-                      className="w-full hover:shadow-2xl hover:bg-primary-500 hover:text-white flex justify-between items-center p-2 mt-1 border-1 border-gray-300 text-[13px] capitalize font-medium text-gray-500 gap-2 cursor-pointer transition-all duration-300 ease-in-out"
+                      className="w-full hover:shadow-2xl hover:bg-primary-500 hover:text-white flex justify-between items-center p-2 mt-1 border-1 border-gray-300 text-[12px] lg:text-[13px] md:text-[13px] capitalize  text-gray-500 gap-2 cursor-pointer transition-all duration-300 ease-in-out"
                     >
                       <Link href="/#">{lesson.title}</Link>
                       <div className=" flex gap-2 items-center">
@@ -272,11 +272,11 @@ const PreviewCourse = () => {
           )}
           {review && <div>review</div>}
         </div>
-        <div className="w-4/12 sticky top-10 h-fit mt-8 flex flex-col gap-2 shadow-lg shadow-gray-500 border-2 border-gray-300">
-          <div className="p-4 flex justify-between items-center text-[13px]">
+        <div className=" w-full lg:w-4/12 md:w-4/12 p-3 sticky top-10 h-fit mt-8 flex flex-col gap-2 shadow-lg shadow-gray-500 border-2 border-gray-300">
+          <div className="p-4 flex justify-between items-center text-[12px] lg:text-[13px] md:text-[13px]">
             {course?.isFree ? (
               <div className="w-full flex justify-between items-center gap-3 ">
-                <div className=" px-2 text-[13px] text-primary-500 bg-primary-200">
+                <div className=" px-2 text-[12px] lg:text-[13px] md:text-[13px] text-primary-500 bg-primary-200">
                   Free
                 </div>
                 <div className="line-through">${course?.price}</div>
@@ -284,7 +284,7 @@ const PreviewCourse = () => {
             ) : (
               <div className="w-full flex justify-between items-center">
                 <div>${course?.price}</div>
-                <div className=" px-2 text-[13px] text-primary-500 bg-primary-200">
+                <div className=" px-2 text-[12px] lg:text-[13px] md:text-[13px] text-primary-500 bg-primary-200">
                   {course?.discount}%
                 </div>
               </div>
@@ -292,19 +292,19 @@ const PreviewCourse = () => {
           </div>
           <div className="w-full border-b-gray-300 border-b-2"></div>
           <div className="w-full p-4 flex flex-col gap-3">
-            <div className="w-full flex justify-between text-[13px] text-gray-600">
+            <div className="w-full flex justify-between text-[12px] lg:text-[13px] md:text-[13px] text-gray-600">
               <div className="flex gap-2 justify-center items-center">
                 <RiUserStarLine size={18} /> Enrolled Students
               </div>
               <div>{course?.studentCount}</div>
             </div>
-            <div className="w-full flex justify-between text-[13px] text-gray-600">
+            <div className="w-full flex justify-between text-[12px] lg:text-[13px] md:text-[13px] text-gray-600">
               <div className="flex gap-2 justify-center items-center">
                 <BiChart size={18} /> Course Level
               </div>
               <div>{course?.level}</div>
             </div>
-            <div className="w-full flex justify-between text-[13px] text-gray-600">
+            <div className="w-full flex justify-between text-[12px] lg:text-[13px] md:text-[13px] text-gray-600">
               <div className="flex gap-2 justify-center items-center">
                 <FaLanguage size={18} /> Language
               </div>

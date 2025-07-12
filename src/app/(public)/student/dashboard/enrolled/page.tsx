@@ -7,8 +7,8 @@ import {
   CourseProps,
   enrollProps,
 } from "../../../../../../components/dashboard/styles/inputField";
-import { FaStar } from "react-icons/fa";
 import { useAuth } from "../../../../../../context/authContext";
+import LinkButton from "../../../../../../components/LinkButton";
 
 const Enrolled = () => {
   useProtectedRoute(["admin", "student"]);
@@ -82,12 +82,12 @@ const Enrolled = () => {
           Enrolled Courses
         </h1>
       </div>
-      <div className="w-[80%] grid grid-cols-2 gap-8">
+      <div className="w-full lg:w-[80%] md:w-[90%] grid lg:grid-cols-2  md:grid-cols-2 grid-cols-1   lg:gap-8 md:gap-4 gap-2">
         {userCourse &&
           userCourse.map((course) => (
             <div
               key={course._id}
-              className="bg-white shadow-2xl flex flex-col gap-2 hover:shadow-sm hover:shadow-primary-500 transition-all hover:-translate-y-2 ease-in-out duration-300"
+              className="bg-white w-full shadow-2xl flex flex-col gap-2 hover:shadow-sm hover:shadow-primary-500 transition-all hover:-translate-y-2 ease-in-out duration-300"
             >
               <Image
                 src={`${process.env.NEXT_PUBLIC_API_URL}/${course.thumbnail}`}
@@ -113,6 +113,10 @@ const Enrolled = () => {
                 {course.title}
               </h1>
               <div className="w-full border-b-1 border-gray-200"></div>
+              <LinkButton
+                link={`/courses/course-preview/${course._id}/learn`}
+                title="Continue Learning"
+              />
             </div>
           ))}
       </div>

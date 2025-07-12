@@ -117,27 +117,28 @@ const Lesson = () => {
     <div className="w-full p-6 flex flex-col">
       <div className="w-full">
         {hasMsg && (
-          <div className=" w-full flex flex-col justify-center items-center bg-white p-6 border-1 border-gray-300 mb-5">
+          <div className="w-full flex flex-col justify-center items-center bg-white p-6 border border-gray-300 mb-5">
             <p className="text-[12px] font-semibold capitalize text-red-400">
               {msg}
             </p>
           </div>
         )}
+
         {loading ? (
           <div className="flex flex-col items-center justify-center">
             <CiSettings className="animate-spin" />
             loading
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="w-full flex flex-col gap-2">
-            <div className="w-full flex gap-2">
-              <div className="w-3/12">
+          <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
+            {/* First Row - Inputs */}
+            <div className="w-full flex flex-wrap gap-2 gap-y-4">
+              <div className="w-full md:w-3/12">
                 <label htmlFor="courseId" className={`${lable}`}>
                   Course
                 </label>
                 <select
                   name="courseId"
-                  id=""
                   className={`${input}`}
                   onChange={handleChange}
                   value={formData.courseId}
@@ -149,7 +150,8 @@ const Lesson = () => {
                   ))}
                 </select>
               </div>
-              <div className="w-3/12">
+
+              <div className="w-full md:w-3/12">
                 <label htmlFor="title" className={`${lable}`}>
                   Lesson Topic
                 </label>
@@ -162,8 +164,9 @@ const Lesson = () => {
                   placeholder="Lesson topic"
                 />
               </div>
-              <div className="w-3/12">
-                <label htmlFor="title" className={`${lable}`}>
+
+              <div className="w-full md:w-3/12">
+                <label htmlFor="slug" className={`${lable}`}>
                   Lesson Slug
                 </label>
                 <input
@@ -175,7 +178,8 @@ const Lesson = () => {
                   placeholder="Lesson slug"
                 />
               </div>
-              <div className="w-3/12">
+
+              <div className="w-full md:w-3/12">
                 <label htmlFor="videoUrl" className={`${lable}`}>
                   videoUrl
                 </label>
@@ -194,7 +198,8 @@ const Lesson = () => {
                   onChange={handleChange}
                 />
               </div>
-              <div className="w-3/12">
+
+              <div className="w-full md:w-3/12">
                 <label htmlFor="duration" className={`${lable}`}>
                   duration
                 </label>
@@ -208,8 +213,10 @@ const Lesson = () => {
                 />
               </div>
             </div>
-            <div className="w-full flex gap-2">
-              <div className="w-10/12">
+
+            {/* Second Row - Description, Preview, Button */}
+            <div className="w-full flex flex-wrap gap-2 gap-y-4">
+              <div className="w-full md:w-10/12">
                 <label htmlFor="description" className={`${lable}`}>
                   Lesson description
                 </label>
@@ -218,10 +225,11 @@ const Lesson = () => {
                   value={formData.description}
                   onChange={handleChange}
                   className={`${input}`}
-                  id=""
+                  rows={3}
                 ></textarea>
               </div>
-              <div className="w-1/12 flex flex-col gap-0 justify-center items-center">
+
+              <div className="w-1/2 md:w-1/12 flex flex-col justify-center items-center">
                 <label htmlFor="isPreview" className={`${lable} text-center`}>
                   isPreview
                 </label>
@@ -233,7 +241,8 @@ const Lesson = () => {
                   className={`${input} p-3`}
                 />
               </div>
-              <div className="w-1/12 flex gap-0 justify-center items-center">
+
+              <div className="w-1/2 md:w-1/12 flex justify-center items-center">
                 <FormButton title="submit" />
               </div>
             </div>

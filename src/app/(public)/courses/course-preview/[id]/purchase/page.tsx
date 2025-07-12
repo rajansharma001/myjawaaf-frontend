@@ -112,9 +112,9 @@ const Purchase = () => {
     getEnrolls();
   }, []);
   return (
-    <div className="w-full flex justify-center items-center">
-      <div className="w-[80%] flex  justify-center gap-6 p-6">
-        <div className="w-[50%] ">
+    <div className="w-full flex flex-col md:flex-row lg:flex-row  justify-center items-center">
+      <div className="w-full lg:w-[80%] md:w-[90%] flex flex-col-reverse  lg:flex-row md:flex-row  justify-center gap-6 lg:p-6 md:p-3 p-2">
+        <div className="w-full  lg:w-[50%] ">
           <div className="w-full shadow-lg shadow-gray-500 border-2 border-gray-300 p-3">
             <h1 className="text-gray-600 font-semibold text-[13px]">
               Personal Details
@@ -244,7 +244,7 @@ const Purchase = () => {
             </div>
           </div>
         ) : (
-          <div className="w-[50%]">
+          <div className="w-full  lg:w-[50%">
             <div className="w-full flex flex-col gap-6 ">
               <div className="shadow-lg shadow-gray-500 border-2 border-gray-300 p-3">
                 <h1 className="text-gray-600 font-semibold text-[13px] text-center">
@@ -252,7 +252,7 @@ const Purchase = () => {
                 </h1>
                 <div className="w-full border-b-gray-300 py-2 mb-2 border-b-2"></div>
 
-                <div className="w-full flex justify-around text-[13px] text-gray-500 font-semibold">
+                <div className="w-full gap-2 flex justify-around text-[13px] text-gray-500 font-semibold">
                   <div className="w-[3/12]">
                     <Image
                       src="/randomqr.png"
@@ -309,6 +309,7 @@ const Purchase = () => {
                       onChange={handleChange}
                       value={courseIdForSubmit}
                       className={`${input}`}
+                      hidden
                     />
 
                     <FormButton title="Submit" />

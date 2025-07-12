@@ -123,7 +123,7 @@ const Course = () => {
     setHasMsg(false);
   }, 3000);
   return (
-    <div className=" w-full p-6">
+    <div className=" w-full lg:p-6 md:p-4 p-2">
       {hasMsg && (
         <div className=" w-full flex flex-col justify-center items-center bg-white p-6 border-1 border-gray-300 mb-5">
           <p className="text-[12px] font-semibold capitalize text-red-400">
@@ -142,8 +142,8 @@ const Course = () => {
           onSubmit={handleSubmit}
           className="w-full flex flex-col gap-5 items-center justify-center"
         >
-          <div className="flex w-full gap-3">
-            <div className="w-4/12">
+          <div className="flex flex-col lg:flex-row md:flex-row w-full gap-3">
+            <div className="lg:w-4/12 md:w-4/12 w-full ">
               <label className={`${lable}`} htmlFor="title">
                 Title
               </label>
@@ -157,7 +157,7 @@ const Course = () => {
                 placeholder="Course title"
               />
             </div>
-            <div className="w-4/12">
+            <div className="lg:w-4/12 md:w-4/12 w-full ">
               <label className={`${lable}`} htmlFor="slug">
                 Slug
               </label>
@@ -171,7 +171,7 @@ const Course = () => {
                 placeholder="course slug"
               />
             </div>
-            <div className="w-4/12">
+            <div className="lg:w-4/12 md:w-4/12 w-full ">
               <label className={`${lable}`} htmlFor="thumbnail">
                 Thumbnail URL
               </label>
@@ -185,8 +185,8 @@ const Course = () => {
             </div>
           </div>
 
-          <div className="flex w-full gap-3">
-            <div className="w-4/12">
+          <div className="flex flex-col lg:flex-row md:flex-row w-full gap-3">
+            <div className="lg:w-4/12 md:w-4/12 w-full ">
               {" "}
               <label className={`${lable}`} htmlFor="language">
                 Language
@@ -205,7 +205,7 @@ const Course = () => {
                 ))}
               </select>
             </div>
-            <div className="w-4/12">
+            <div className="lg:w-4/12 md:w-4/12 w-full ">
               {" "}
               <label className={`${lable}`} htmlFor="categoryId">
                 Category
@@ -217,15 +217,16 @@ const Course = () => {
                 value={formData.categoryId}
                 onChange={handleChange}
               >
-                {cat.map((cat: any) => (
-                  <option key={cat._id} value={cat._id} className={``}>
-                    {cat.title}
-                  </option>
-                ))}
+                {cat &&
+                  cat.map((cat: any) => (
+                    <option key={cat._id} value={cat._id} className={``}>
+                      {cat.title}
+                    </option>
+                  ))}
               </select>
             </div>
 
-            <div className="w-2/12 flex justify-center items-center ">
+            <div className=" lg:w-2/12 md:w-2/12 w-full  flex justify-center items-center ">
               <label className={`${lable}`} htmlFor="isFree">
                 Is Free
               </label>
@@ -238,7 +239,7 @@ const Course = () => {
                 name="isFree"
               />
             </div>
-            <div className="w-2/12 flex justify-center items-center ">
+            <div className="lg:w-2/12 md:w-2/12 w-full flex justify-center items-center ">
               <label className={`${lable}`} htmlFor="isPublished">
                 Is Published
               </label>
@@ -253,8 +254,8 @@ const Course = () => {
             </div>
           </div>
 
-          <div className="flex w-full gap-3">
-            <div className="w-4/12">
+          <div className="flex flex-col lg:flex-row md:flex-row w-full gap-3">
+            <div className="lg:w-4/12 md:w-4/12 w-full ">
               <label className={`${lable}`} htmlFor="price">
                 Price
               </label>
@@ -268,7 +269,7 @@ const Course = () => {
                 placeholder="Course price"
               />
             </div>
-            <div className="w-4/12">
+            <div className="lg:w-4/12 md:w-4/12 w-full ">
               {" "}
               <label className={`${lable}`} htmlFor="discount">
                 Discount (%)
@@ -283,7 +284,7 @@ const Course = () => {
                 placeholder="dicount price"
               />
             </div>
-            <div className="w-4/12">
+            <div className="lg:w-4/12 md:w-4/12 w-full ">
               <label className={`${lable}`} htmlFor="level">
                 Level
               </label>
@@ -302,8 +303,8 @@ const Course = () => {
               </select>
             </div>
           </div>
-          <div className="flex w-full gap-3">
-            <div className="w-10/12">
+          <div className="flex flex-col lg:flex-row md:flex-row w-full gap-3">
+            <div className="lg:w-10/12 md:w-10/12 w-full">
               <label className={`${lable}`} htmlFor="description">
                 Description
               </label>
@@ -318,7 +319,7 @@ const Course = () => {
               ></textarea>
             </div>
 
-            <div className="w-2/12 flex justify-center items-center">
+            <div className="lg:w-2/12 md:w-1/12 w-full flex justify-center items-center">
               <FormButton title="Submit" />
             </div>
           </div>

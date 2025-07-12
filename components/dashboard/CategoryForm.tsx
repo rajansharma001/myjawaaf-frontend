@@ -12,6 +12,7 @@ const CategoryForm = () => {
     slug: "",
     description: "",
   });
+
   const handleChange = (e: any) => {
     setFormData({
       ...formData,
@@ -59,17 +60,19 @@ const CategoryForm = () => {
       setHasMsg(false);
     }, 3000);
   };
+
   return (
-    <div>
+    <div className="w-full px-4">
       <div className="flex flex-col items-center justify-center">
         {hasMsg && (
-          <div className=" w-[60%] flex flex-col justify-center items-center bg-white p-6 border-1 border-gray-300 mb-5">
+          <div className="w-full max-w-md flex flex-col justify-center items-center bg-white p-6 border border-gray-300 mb-5">
             <p className="text-[12px] font-semibold capitalize text-red-400">
               {msg}
             </p>
           </div>
         )}
       </div>
+
       {loading ? (
         <div className="flex flex-col items-center justify-center">
           <CiSettings className="animate-spin" />
@@ -81,8 +84,8 @@ const CategoryForm = () => {
           method="POST"
           className="w-full flex flex-col gap-5 items-center justify-center"
         >
-          <div className="flex flex-col justify-center items-center w-full gap-2">
-            <div className="w-[60%]">
+          <div className="flex flex-col justify-center items-center w-full gap-4">
+            <div className="w-full max-w-md">
               <label className={`${lable}`} htmlFor="title">
                 Title
               </label>
@@ -96,7 +99,7 @@ const CategoryForm = () => {
                 name="title"
               />
             </div>
-            <div className="w-[60%]">
+            <div className="w-full max-w-md">
               <label className={`${lable}`} htmlFor="slug">
                 Slug
               </label>
@@ -110,7 +113,7 @@ const CategoryForm = () => {
                 placeholder="category slug"
               />
             </div>
-            <div className="w-[60%]">
+            <div className="w-full max-w-md">
               <label className={`${lable}`} htmlFor="description">
                 Description
               </label>
@@ -124,7 +127,7 @@ const CategoryForm = () => {
                 placeholder="category description"
               ></textarea>
             </div>
-            <div className="w-2/12 flex justify-center items-center">
+            <div className="w-full md:w-2/12 flex justify-center items-center">
               <FormButton title="Submit" />
             </div>
           </div>

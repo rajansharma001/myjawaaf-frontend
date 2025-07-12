@@ -185,22 +185,23 @@ const Enroll = () => {
   }, 3000);
   return (
     <div className="w-full relative">
-      <div className="w-full flex flex-col p-6">
+      <div className="w-full flex flex-col p-4 sm:p-6">
         {hasMsg && (
-          <div className=" w-full flex flex-col justify-center items-center bg-white p-6 border-1 border-gray-300 mb-5">
+          <div className="w-full flex flex-col justify-center items-center bg-white p-4 sm:p-6 border border-gray-300 mb-5">
             <p className="text-[12px] font-semibold capitalize text-red-400">
               {msg}
             </p>
           </div>
         )}
+
         {loading ? (
           <div className="flex flex-col items-center justify-center">
             <CiSettings className="animate-spin" />
-            loading{" "}
+            loading
           </div>
         ) : (
           <div className="w-full">
-            <div className="w-full flex justify-end">
+            <div className="w-full flex justify-end mb-3">
               <button
                 className={`${button} w-fit`}
                 onClick={() => setIsEnrollOpen(!isEnrollOpen)}
@@ -208,81 +209,75 @@ const Enroll = () => {
                 {!isEnrollOpen ? "Add new enrolment" : "close"}
               </button>
             </div>
+
             {isEnrollOpen && (
-              <form onSubmit={handleSubmit} className="flex flex-wrap gap-2">
+              <form onSubmit={handleSubmit} className="flex flex-wrap gap-4">
                 <div className="flex flex-col w-full">
                   <label htmlFor="userId" className={`${lable}`}>
                     Select a user
                   </label>
-
                   <select
                     name="userId"
-                    id=""
                     className={`${input}`}
                     onChange={handleChange}
                     value={formData.userId}
                   >
                     <option value="">Select a user</option>
-
-                    {users &&
-                      users.map((user) => (
-                        <option key={user._id} value={user._id}>
-                          {user.fullname}
-                        </option>
-                      ))}
+                    {users?.map((user) => (
+                      <option key={user._id} value={user._id}>
+                        {user.fullname}
+                      </option>
+                    ))}
                   </select>
                 </div>
-                <div className="flex w-full gap-2">
-                  <div className="flex flex-col w-full">
-                    <label htmlFor="courseId" className={`${lable}`}>
-                      Select a course
-                    </label>
-                    <select
-                      name="courseId"
-                      id=""
-                      className={`${input}`}
-                      onChange={handleChange}
-                      value={formData.courseId}
-                    >
-                      <option value="">Select a course</option>
-                      {courses &&
-                        courses.map((course) => (
-                          <option key={course._id} value={course._id}>
-                            {course.title}
-                          </option>
-                        ))}
-                    </select>
-                  </div>
 
-                  {courseById && (
-                    <div className=" flex gap-2">
-                      <div className="flex flex-col w-full">
-                        <label htmlFor="isFree" className={`${lable}`}>
-                          IsFree
-                        </label>
-                        <input
-                          type="text"
-                          value={courseById.isFree ? "Free" : "Paid"}
-                          className={`${input}`}
-                          readOnly
-                        />
-                      </div>
-                      <div className="flex flex-col w-full">
-                        <label htmlFor="price" className={`${lable}`}>
-                          Price
-                        </label>
-
-                        <input
-                          type="text"
-                          name="price"
-                          value={courseById.price}
-                          className={`${input} `}
-                          readOnly
-                        />
-                      </div>
-                    </div>
-                  )}
+                <div className="flex flex-col w-full sm:w-[49%]">
+                  <label htmlFor="courseId" className={`${lable}`}>
+                    Select a course
+                  </label>
+                  <select
+                    name="courseId"
+                    className={`${input}`}
+                    onChange={handleChange}
+                    value={formData.courseId}
+                  >
+                    <option value="">Select a course</option>
+                    {courses?.map((course) => (
+                      <option key={course._id} value={course._id}>
+                        {course.title}
+                      </option>
+                    ))}
+                  </select>
                 </div>
+
+                {courseById && (
+                  <>
+                    <div className="flex flex-col w-full sm:w-[24%]">
+                      <label htmlFor="isFree" className={`${lable}`}>
+                        IsFree
+                      </label>
+                      <input
+                        type="text"
+                        value={courseById.isFree ? "Free" : "Paid"}
+                        className={`${input}`}
+                        readOnly
+                      />
+                    </div>
+                    <div className="flex flex-col w-full sm:w-[24%]">
+                      <label htmlFor="price" className={`${lable}`}>
+                        Price
+                      </label>
+                      <input
+                        type="text"
+                        name="price"
+                        value={courseById.price}
+                        className={`${input}`}
+                        readOnly
+                      />
+                    </div>
+                  </>
+                )}
+
                 <div className="flex flex-col w-full">
                   <label htmlFor="receipt" className={`${lable}`}>
                     Upload Receipt
@@ -294,16 +289,21 @@ const Enroll = () => {
                     className={`${input}`}
                   />
                 </div>
-                <FormButton title="submit" />
+
+                <div className="w-full flex justify-start">
+                  <FormButton title="submit" />
+                </div>
               </form>
             )}
           </div>
         )}
       </div>
+
+      {/* Receipt popup */}
       {popReceipt && (
-        <div className="absolute  w-full flex max-h-screen justify-center items-center ">
+        <div className="absolute w-full inset-0 z-50 flex max-h-screen justify-center items-center bg-white/60 backdrop-blur-sm">
           <button
-            className={`${button} absolute top-0 right-0`}
+            className={`${button} absolute top-3 right-3`}
             onClick={() => setPopReceipt(false)}
           >
             close
@@ -312,64 +312,66 @@ const Enroll = () => {
             src={receiptUrl}
             height={260}
             width={260}
-            alt="ee"
-            className="w-[20%]"
+            alt="receipt"
+            className="w-[80%] sm:w-[40%] md:w-[20%]"
           />
         </div>
       )}
-      <div className="w-full p-6 text-[13px] capitalize">
-        <table className="border-collapse border w-full border-gray-400 p-6">
-          <thead className="">
-            <tr>
-              <th className="border border-gray-300 p-2 ">S.No.</th>
-              <th className="border border-gray-300 p-2 ">payment id</th>
-              <th className="border border-gray-300 p-2 ">Amount</th>
-              <th className="border border-gray-300 p-2 ">Course</th>
-              <th className="border border-gray-300 p-2 ">User</th>
-              <th className="border border-gray-300 p-2 ">Receipt</th>
-              <th className="border border-gray-300 p-2 ">Has Access</th>
-              <th className="border border-gray-300 p-2 ">Action</th>
-            </tr>
-          </thead>
-          <tbody className="text-gray-600">
-            {enrolls &&
-              enrolls.map((enroll, index) => (
-                <tr key={enroll._id} className="text-center">
-                  <td className="border border-gray-300 p-2 ">{index + 1}</td>
-                  <td className="border border-gray-300 p-2 ">
+
+      {/* Table */}
+      <div className="w-full p-4 sm:p-6 text-[13px] capitalize">
+        <div className="w-full overflow-x-auto">
+          <table className="border-collapse border w-full border-gray-400 text-center">
+            <thead>
+              <tr>
+                <th className="border border-gray-300 p-2">S.No.</th>
+                <th className="border border-gray-300 p-2">Payment ID</th>
+                <th className="border border-gray-300 p-2">Amount</th>
+                <th className="border border-gray-300 p-2">Course</th>
+                <th className="border border-gray-300 p-2">User</th>
+                <th className="border border-gray-300 p-2">Receipt</th>
+                <th className="border border-gray-300 p-2">Has Access</th>
+                <th className="border border-gray-300 p-2">Action</th>
+              </tr>
+            </thead>
+            <tbody className="text-gray-600">
+              {enrolls?.map((enroll, index) => (
+                <tr key={enroll._id}>
+                  <td className="border border-gray-300 p-2">{index + 1}</td>
+                  <td className="border border-gray-300 p-2">
                     {enroll.paymentId}
                   </td>
-                  <td className="border border-gray-300 p-2 ">
+                  <td className="border border-gray-300 p-2">
                     {enroll.amountPaid}
                   </td>
-                  <td className="border border-gray-300 p-2 ">
+                  <td className="border border-gray-300 p-2">
                     {courses.find((c) => c._id === enroll.courseId)?.title}
                   </td>
-                  <td className="border border-gray-300 p-2 ">
+                  <td className="border border-gray-300 p-2">
                     {users.find((u) => u._id === enroll.userId)?.fullname}
                   </td>
-                  <td className="border border-gray-300 p-2  items-center justify-center ">
-                    <div className="flex gap-2 items-center justify-center  ">
+                  <td className="border border-gray-300 p-2">
+                    <div className="flex justify-center">
                       <Image
                         src={`${process.env.NEXT_PUBLIC_API_URL}/${enroll.receipt}`}
                         alt={enroll.courseId}
-                        width={160}
-                        height={160}
+                        width={80}
+                        height={80}
+                        className="cursor-pointer h-12 object-cover"
                         onClick={() => {
-                          setPopReceipt(!popReceipt);
+                          setPopReceipt(true);
                           setReceiptUrl(
                             `${process.env.NEXT_PUBLIC_API_URL}/${enroll.receipt}`
                           );
                         }}
-                        className={`cursor-pointer h-15`}
                       />
                     </div>
                   </td>
-                  <td className="border border-gray-300 p-2 ">
+                  <td className="border border-gray-300 p-2">
                     {enroll.hasAccess ? "Yes" : "No"}
                   </td>
-                  <td className="border border-gray-300 p-2 ">
-                    <div className="flex gap-2 items-center justify-center">
+                  <td className="border border-gray-300 p-2">
+                    <div className="flex gap-2 justify-center">
                       <button
                         className={`${button}`}
                         onClick={() => {
@@ -389,14 +391,14 @@ const Enroll = () => {
                   </td>
                 </tr>
               ))}
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      {/* update enroll popup */}
-
+      {/* Update enroll popup */}
       {updateEnrollment && (
-        <div className="absolute top-0 inset-0 shadow-2xl backdrop-blur-3xl">
+        <div className="absolute top-0 inset-0 shadow-2xl backdrop-blur-3xl z-50">
           <UpdateEnroll
             handleUpdateStateChange={handleUpdateStateChange}
             enrollId={enrollId}

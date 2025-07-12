@@ -11,21 +11,14 @@ const Header = () => {
 
   const [profileMenu, setProfileMenu] = useState(false);
   return (
-    <header className="p-4 w-full bg-gray-100 flex justify-between">
+    <header className="lg:p-4 md:p-4 p-2 w-full bg-gray-100 flex justify-between">
       <div className="w-6/12 flex items-center">
         <p className="text-[14px] uppercase text-gray-600 ">
           Hello<strong> {user?.fullname}</strong>
         </p>
       </div>
 
-      <div className="w-6/12 gap-6 flex items-center justify-end">
-        <div className="w-full flex justify-end items-center">
-          <input
-            type="search"
-            placeholder="Search..."
-            className="p-3 focus:outline-none border-1 border-gray-300 text-[13px] w-[70%] text-gray-600 bg-white"
-          />
-        </div>
+      <div className="w-6/12 lg:gap-6 md:gap-4 gap-2 flex items-center justify-end">
         <div className="relative flex">
           <PiBell size={24} />
           <span className="h-3 w-3 bg-amber-300 rounded-full shadow-2xl shadow-amber-400 animate-bounce absolute inset-0 ml-3"></span>

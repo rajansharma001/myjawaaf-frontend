@@ -147,9 +147,9 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
 
   return (
     <div>
-      <div className=" w-full p-6">
+      <div className="w-full lg:p-6 md:p-4 p-2">
         {hasMsg && (
-          <div className=" w-full flex flex-col justify-center items-center bg-white p-6 border-1 border-gray-300 mb-5">
+          <div className="w-full flex flex-col justify-center items-center bg-white p-6 border border-gray-300 mb-5">
             <p className="text-[12px] font-semibold capitalize text-red-400">
               {msg}
             </p>
@@ -165,13 +165,13 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
             onSubmit={handleSubmit}
             className="w-full flex flex-col gap-5 items-center justify-center"
           >
-            <div className="flex w-full gap-3">
-              <div className="w-4/12">
+            <div className="flex flex-wrap w-full gap-4">
+              <div className="w-full sm:w-6/12 md:w-4/12">
                 <label className={`${lable}`} htmlFor="title">
                   Title
                 </label>
                 <input
-                  className={`${input}`}
+                  className={`${input} min-w-0 w-full`}
                   value={formData.title}
                   onChange={handleChange}
                   type="text"
@@ -180,82 +180,78 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
                   placeholder="Course title"
                 />
               </div>
-              <div className="w-4/12">
+              <div className="w-full sm:w-6/12 md:w-4/12">
                 <label className={`${lable}`} htmlFor="slug">
                   Slug
                 </label>
                 <input
-                  className={`${input}`}
+                  className={`${input} min-w-0 w-full`}
                   value={formData.slug}
                   onChange={handleChange}
                   type="text"
                   id="slug"
                   name="slug"
-                  placeholder="course slug"
+                  placeholder="Course slug"
                 />
               </div>
-              <div className="w-4/12">
+              <div className="w-full sm:w-6/12 md:w-4/12">
                 <label className={`${lable}`} htmlFor="thumbnail">
                   Thumbnail URL
                 </label>
                 <input
-                  className={`${input}`}
+                  className={`${input} min-w-0 w-full`}
                   value={formData.thumbnail}
                   onChange={handleChange}
                   type="text"
                   id="thumbnail"
                   name="thumbnail"
-                  placeholder="course thumbnail"
+                  placeholder="Course thumbnail"
                 />
               </div>
             </div>
 
-            <div className="flex w-full gap-3">
-              <div className="w-4/12">
-                {" "}
+            <div className="flex flex-wrap w-full gap-4">
+              <div className="w-full sm:w-6/12 md:w-4/12">
                 <label className={`${lable}`} htmlFor="language">
                   Language
                 </label>
                 <select
                   name="language"
-                  id=""
-                  className={`${input}`}
+                  className={`${input} min-w-0 w-full`}
                   value={formData.language}
                   onChange={handleChange}
                 >
                   {languages.map((lang, index) => (
-                    <option key={index} value={lang} className={``}>
+                    <option key={index} value={lang}>
                       {lang}
                     </option>
                   ))}
                 </select>
               </div>
-              <div className="w-4/12">
-                {" "}
+              <div className="w-full sm:w-6/12 md:w-4/12">
                 <label className={`${lable}`} htmlFor="categoryId">
                   Category
                 </label>
                 <select
                   name="categoryId"
-                  id=""
-                  className={`${input}`}
+                  className={`${input} min-w-0 w-full`}
                   value={formData.categoryId}
                   onChange={handleChange}
                 >
-                  {cat.map((cat: any) => (
-                    <option key={cat._id} value={cat._id} className={``}>
-                      {cat.title}
-                    </option>
-                  ))}
+                  {cat &&
+                    cat.map((cat: any) => (
+                      <option key={cat._id} value={cat._id}>
+                        {cat.title}
+                      </option>
+                    ))}
                 </select>
               </div>
-
-              <div className="w-2/12 flex justify-center items-center ">
-                <label className={`${lable}`} htmlFor="isFree">
+              <div className="w-full sm:w-6/12 md:w-2/12 flex flex-col justify-center items-center">
+                <label className={`${lable} text-center`} htmlFor="isFree">
                   Is Free
                 </label>
                 <input
-                  className={`${input}`}
+                  className={`${input} min-w-0 w-auto`}
                   checked={formData.isFree}
                   onChange={handleChange}
                   type="checkbox"
@@ -263,12 +259,12 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
                   name="isFree"
                 />
               </div>
-              <div className="w-2/12 flex justify-center items-center ">
-                <label className={`${lable}`} htmlFor="isPublished">
+              <div className="w-full sm:w-6/12 md:w-2/12 flex flex-col justify-center items-center">
+                <label className={`${lable} text-center`} htmlFor="isPublished">
                   Is Published
                 </label>
                 <input
-                  className={`${input}`}
+                  className={`${input} min-w-0 w-auto`}
                   checked={formData.isPublished}
                   onChange={handleChange}
                   type="checkbox"
@@ -278,13 +274,13 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
               </div>
             </div>
 
-            <div className="flex w-full gap-3">
-              <div className="w-4/12">
+            <div className="flex flex-wrap w-full gap-4">
+              <div className="w-full sm:w-6/12 md:w-4/12">
                 <label className={`${lable}`} htmlFor="price">
                   Price
                 </label>
                 <input
-                  className={`${input}`}
+                  className={`${input} min-w-0 w-full`}
                   value={formData.price}
                   onChange={handleChange}
                   type="number"
@@ -293,42 +289,41 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
                   placeholder="Course price"
                 />
               </div>
-              <div className="w-4/12">
-                {" "}
+              <div className="w-full sm:w-6/12 md:w-4/12">
                 <label className={`${lable}`} htmlFor="discount">
                   Discount (%)
                 </label>
                 <input
-                  className={`${input}`}
+                  className={`${input} min-w-0 w-full`}
                   value={formData.discount}
                   onChange={handleChange}
                   type="number"
                   id="discount"
                   name="discount"
-                  placeholder="dicount price"
+                  placeholder="Discount percentage"
                 />
               </div>
-              <div className="w-4/12">
+              <div className="w-full sm:w-6/12 md:w-4/12">
                 <label className={`${lable}`} htmlFor="level">
                   Level
                 </label>
                 <select
                   name="level"
-                  id=""
-                  className={`${input}`}
+                  className={`${input} min-w-0 w-full`}
                   value={formData.level}
                   onChange={handleChange}
                 >
                   {levels.map((level, index) => (
-                    <option key={index} value={level} className={``}>
+                    <option key={index} value={level}>
                       {level}
                     </option>
                   ))}
                 </select>
               </div>
             </div>
-            <div className="flex w-full gap-3">
-              <div className="w-10/12">
+
+            <div className="flex flex-wrap w-full gap-4">
+              <div className="w-full md:w-10/12">
                 <label className={`${lable}`} htmlFor="description">
                   Description
                 </label>
@@ -338,12 +333,11 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
                   rows={4}
                   id="description"
                   name="description"
-                  className={`${input}`}
+                  className={`${input} min-w-0 w-full`}
                   placeholder="Course description"
                 ></textarea>
               </div>
-
-              <div className="w-2/12 flex justify-center items-center">
+              <div className="w-full md:w-2/12 flex justify-center items-center">
                 <FormButton title="Submit" />
               </div>
             </div>

@@ -20,7 +20,9 @@ export default function DashboardLayout({
           <Header />
 
           {/* Main content */}
-          <main className="flex-1 p-6 bg-gray-100">{children}</main>
+          <main className="flex-1 lg:p-6 md:p-4 p-2 bg-gray-100">
+            {children}
+          </main>
         </div>
       </div>
     </AuthProvider>

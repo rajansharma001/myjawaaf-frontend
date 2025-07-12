@@ -55,13 +55,15 @@ const Learn = () => {
     }
   }, [lessons]);
   return (
-    <div className="w-full flex flex-col justify-center items-center">
-      <div className="w-[80%] flex flex-col justify-center">
-        <div className="w-full p-2 bg-gray-100 text-[14px] font-semibold">
+    <div className="w-full flex flex-col justify-center items-center p-0">
+      <div className="w-full flex lg:justify-center justify-start  py-3 bg-primary-500">
+        <div className="lg:w-[80%] md:w-[90%] w-full px-2  bg-primary-500 text-gray-100 text-[14px] font-semibold">
           <h1>{course?.title}</h1>
         </div>
-        <div className="w-full flex py-6">
-          <div className="w-8/12 border-2 border-gray-200 shadow-2xl">
+      </div>
+      <div className="w-full lg:w-[80%] md:w-full md:px-6 flex flex-col justify-center">
+        <div className="w-full flex flex-col lg:flex-row md:flex-row py-6">
+          <div className="w-full lg:w-8/12 md:w-full border-2 border-gray-200 shadow-2xl">
             <video
               controls
               className="w-full"
@@ -69,10 +71,10 @@ const Learn = () => {
             ></video>
 
             <div className="w-full flex flex-col p-2 gap-2">
-              <h1 className="text-[16px] font-semibold capitalize text-gray-500">
+              <h1 className="text-[12px] lg:text-[16px] md:text-[14px] font-semibold capitalize text-gray-500">
                 Lesson Details
               </h1>
-              <div className="w-full text-[14px] font-semibold capitalize text-gray-500">
+              <div className="w-fulltext-[12px] lg:text-[14px] md:text-[13px] font-semibold capitalize text-gray-500">
                 Title: {lessonTitle}
               </div>
               <div className="w-full text-[12px] font-semibold capitalize text-gray-500">
@@ -80,11 +82,11 @@ const Learn = () => {
               </div>
             </div>
           </div>
-          <div className="w-4/12 p-3 shadow-2xl border-2 border-gray-200">
+          <div className="w-full lg:w-4/12 md:w-4/12 lg:p-3 md:p-2 shadow-2xl border-2 border-gray-200">
             <div
               className={` px-2 transition-all transform duration-300 ease-in-out`}
             >
-              <h1 className="text-[13px] font-semibold text-gray-500">
+              <h1 className="text-[12px] lg:text-[13px] md:text-[13px] font-semibold text-gray-500">
                 Course Content
               </h1>
               {lessons &&
@@ -96,7 +98,7 @@ const Learn = () => {
                       setLessonTitle(lesson.title);
                       setLessonDescription(lesson.description);
                     }}
-                    className="w-full hover:shadow-2xl hover:bg-primary-500 hover:text-white flex justify-between items-center p-2 mt-1 border-1 border-gray-300 text-[13px] capitalize font-medium text-gray-500 gap-2 cursor-pointer transition-all duration-300 ease-in-out"
+                    className="w-full hover:shadow-2xl hover:bg-primary-500 hover:text-white flex justify-between items-center p-2 mt-1 border-1 border-gray-300 text-[12px] lg:text-[13px] md:text-[13px] capitalize font-medium text-gray-500 gap-2 cursor-pointer transition-all duration-300 ease-in-out"
                   >
                     <div className=" w-full flex gap-2 items-center justify-between">
                       <div className="flex gap-2 justify-center items-center">

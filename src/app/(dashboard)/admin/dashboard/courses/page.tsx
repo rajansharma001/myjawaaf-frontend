@@ -121,121 +121,120 @@ const AllCourses = () => {
             loading
           </div>
         )}
-        <div className="min-w-fit w-full border border-gray-300 rounded-md">
-          <div className="flex w-full bg-gray-100 font-semibold text-[12px] text-gray-700">
-            <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
-              lesson
-            </div>
-            <div className="w-2/12 h-8 flex items-center justify-center border-r border-gray-300">
-              Title
-            </div>
-            <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
-              Slug
-            </div>
-
-            <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
-              Thumbnail
-            </div>
-            <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
-              Category ID
-            </div>
-            <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
-              Is Free
-            </div>
-            <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
-              Price
-            </div>
-            <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
-              Discount
-            </div>
-            <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
-              Level
-            </div>
-            <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
-              Language
-            </div>
-            <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
-              Published
-            </div>
-
-            <div className="w-1/12 h-8 flex items-center justify-center">
-              Action
-            </div>
-          </div>
-
-          <div className=" ">
-            {courses?.map((course) => (
-              <div
-                key={course._id}
-                className=" flex text-[12px] text-gray-800 border-t bg-white border-gray-200"
-              >
-                <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100 ">
-                  <button
-                    className={`${button}`}
-                    onClick={() => {
-                      getLesson(course._id as string);
-                      setLessonPop(true);
-                    }}
-                  >
-                    View Lesson
-                  </button>
-                </div>
-                <div className="w-2/12 h-16 flex items-center justify-center border-r border-gray-100 ">
-                  {course.title}
-                </div>
-                <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
-                  {course.slug}
-                </div>
-                <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
-                  <Image
-                    src={`${process.env.NEXT_PUBLIC_API_URL}/${course.thumbnail}`}
-                    alt="thumbnail"
-                    height={50}
-                    width={50}
-                  />
-                </div>
-                <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
-                  {cat.find((c: CatProps) => c._id === course.categoryId)
-                    ?.title || "unknown"}
-                </div>
-                <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
-                  {course.isFree ? "Free" : "Paid"}
-                </div>
-                <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
-                  {course.price}
-                </div>
-                <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
-                  {course.discount}
-                </div>
-                <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
-                  {course.level}
-                </div>
-                <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
-                  {course.language}
-                </div>
-                <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
-                  {course.isPublished ? "Published" : "Unpublished"}
-                </div>
-
-                <div className="w-1/12 h-16 flex items-center justify-center gap-2">
-                  <button
-                    onClick={() => {
-                      setUpdatePop(true);
-                      setCourseId(course._id as string);
-                    }}
-                    className={`${button}`}
-                  >
-                    <BiEdit />
-                  </button>
-                  <button
-                    onClick={() => handleDelete(course._id)}
-                    className={`${button}`}
-                  >
-                    <FiDelete />
-                  </button>
-                </div>
+        <div className="w-full overflow-x-auto">
+          <div className="min-w-[1200px] border border-gray-300 rounded-md overflow-scroll">
+            <div className="flex w-full bg-gray-100 font-semibold text-[12px] text-gray-700">
+              <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
+                lesson
               </div>
-            ))}
+              <div className="w-2/12 h-8 flex items-center justify-center border-r border-gray-300">
+                Title
+              </div>
+              <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
+                Slug
+              </div>
+              <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
+                Thumbnail
+              </div>
+              <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
+                Category ID
+              </div>
+              <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
+                Is Free
+              </div>
+              <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
+                Price
+              </div>
+              <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
+                Discount
+              </div>
+              <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
+                Level
+              </div>
+              <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
+                Language
+              </div>
+              <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
+                Published
+              </div>
+              <div className="w-1/12 h-8 flex items-center justify-center">
+                Action
+              </div>
+            </div>
+
+            <div>
+              {courses?.map((course) => (
+                <div
+                  key={course._id}
+                  className=" flex text-[12px] text-gray-800 border-t bg-white border-gray-200"
+                >
+                  <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100 ">
+                    <button
+                      className={`${button}`}
+                      onClick={() => {
+                        getLesson(course._id as string);
+                        setLessonPop(true);
+                      }}
+                    >
+                      View Lesson
+                    </button>
+                  </div>
+                  <div className="w-2/12 h-16 flex items-center justify-center border-r border-gray-100 ">
+                    {course.title}
+                  </div>
+                  <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
+                    {course.slug}
+                  </div>
+                  <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
+                    <Image
+                      src={`${process.env.NEXT_PUBLIC_API_URL}/${course.thumbnail}`}
+                      alt="thumbnail"
+                      height={50}
+                      width={50}
+                    />
+                  </div>
+                  <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
+                    {cat.find((c: CatProps) => c._id === course.categoryId)
+                      ?.title || "unknown"}
+                  </div>
+                  <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
+                    {course.isFree ? "Free" : "Paid"}
+                  </div>
+                  <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
+                    {course.price}
+                  </div>
+                  <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
+                    {course.discount}
+                  </div>
+                  <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
+                    {course.level}
+                  </div>
+                  <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
+                    {course.language}
+                  </div>
+                  <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
+                    {course.isPublished ? "Published" : "Unpublished"}
+                  </div>
+                  <div className="w-1/12 h-16 flex items-center justify-center gap-2">
+                    <button
+                      onClick={() => {
+                        setUpdatePop(true);
+                        setCourseId(course._id as string);
+                      }}
+                      className={`${button}`}
+                    >
+                      <BiEdit />
+                    </button>
+                    <button
+                      onClick={() => handleDelete(course._id)}
+                      className={`${button}`}
+                    >
+                      <FiDelete />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -259,8 +258,8 @@ const AllCourses = () => {
       {/* lesson pop */}
       <div>
         {lessonPop && (
-          <div className="w-full absolute inset-0 top-0 backdrop-blur-2xl">
-            <div className="flex justify-end items-end">
+          <div className="w-full absolute inset-0 top-0 backdrop-blur-2xl overflow-x-auto">
+            <div className="flex justify-end items-end p-2">
               <button
                 onClick={() => setLessonPop(false)}
                 className={`${button}`}
@@ -268,7 +267,8 @@ const AllCourses = () => {
                 close
               </button>
             </div>
-            <div className="min-w-fit border border-gray-300 rounded-md">
+
+            <div className="min-w-[1000px] border border-gray-300 rounded-md mx-auto">
               <div className="flex w-full bg-gray-100 font-semibold text-[12px] text-gray-700">
                 <div className="w-2/12 h-8 flex items-center justify-center border-r border-gray-300">
                   Title
@@ -276,7 +276,6 @@ const AllCourses = () => {
                 <div className="w-2/12 h-8 flex items-center justify-center border-r border-gray-300">
                   Slug
                 </div>
-
                 <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
                   VideoUrl
                 </div>
@@ -287,20 +286,20 @@ const AllCourses = () => {
                   Is Preview
                 </div>
                 <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
-                  duration
+                  Duration
                 </div>
                 <div className="w-2/12 h-8 flex items-center justify-center border-r border-gray-300">
-                  description
+                  Description
                 </div>
               </div>
 
-              <div className="overflow-y-scroll h-150 ">
+              <div className="overflow-y-scroll h-150">
                 {lesson?.map((lesson) => (
                   <div
                     key={lesson._id}
-                    className=" flex  w-full text-[12px] text-gray-800 border-t bg-white border-gray-200"
+                    className="flex w-full text-[12px] text-gray-800 border-t bg-white border-gray-200"
                   >
-                    <div className="w-2/12 h-16 flex items-center justify-center border-r border-gray-100 ">
+                    <div className="w-2/12 h-16 flex items-center justify-center border-r border-gray-100">
                       {lesson.title}
                     </div>
                     <div className="w-2/12 h-16 flex items-center justify-center border-r border-gray-100">
@@ -316,7 +315,7 @@ const AllCourses = () => {
                     <div className="w-3/12 h-16 flex items-center justify-center border-r border-gray-100">
                       {courses?.find(
                         (c: CourseProps) => c._id === lesson.courseId
-                      )?.title || "unkown"}
+                      )?.title || "unknown"}
                     </div>
                     <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
                       {lesson.isPreview ? "Yes" : "No"}

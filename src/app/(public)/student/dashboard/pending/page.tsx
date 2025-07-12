@@ -82,7 +82,7 @@ const EnrolledPending = () => {
           Verification Pending Courses
         </h1>
       </div>
-      <div className="w-[80%] grid grid-cols-2 gap-8">
+      <div className="w-full lg:w-[80%] md:w-[90%] grid lg:grid-cols-2  md:grid-cols-2 grid-cols-1   lg:gap-8 md:gap-4 gap-2">
         {userCourse &&
           userCourse.map((course) => (
             <div

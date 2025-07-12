@@ -69,8 +69,8 @@ const Signin = () => {
   }, [user, loading]);
 
   return (
-    <div className="w-full flex max-h-[90vh]">
-      <div className="w-[50%] p-0 m-0 ">
+    <div className="w-full flex flex-col md:flex-row lg:flex-row max-h-[90vh] p-2">
+      <div className="w-full hidden lg:flex md:flex lg:w-[50%] md:w-[50%] p-0 m-0 ">
         <Image
           src="/signin.webp"
           width={800}
@@ -79,7 +79,7 @@ const Signin = () => {
           className="max-h-[90vh] bg-[#b8b0ff]"
         />
       </div>
-      <div className="w-[50%] flex flex-col justify-center items-center">
+      <div className="w-full lg:w-[50%] md:w-[50%] py-10 lg:py-0  md:py-0 flex flex-col justify-center items-center shadow-2xl shadow-gray-300 ">
         {hasError && (
           <div className=" w-[70%] flex flex-col justify-center items-center p-6 border-1 border-gray-300 mb-5">
             <p className="text-gray-500 capitalize text-[12px]">{hasError}</p>

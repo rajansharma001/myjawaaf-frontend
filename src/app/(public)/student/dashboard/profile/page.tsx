@@ -125,7 +125,7 @@ const Profile = () => {
   console.log("userdetails", formData);
   return (
     <div className="w-full">
-      <div className="w-full p-6">
+      <div className="w-full lg:p-6 md:p-4 p-2">
         {hasMsg && (
           <div className=" w-full flex flex-col justify-center items-center bg-white p-6 border-1 border-gray-300 mb-5">
             <p className="text-[12px] font-semibold capitalize text-red-400">
@@ -136,7 +136,7 @@ const Profile = () => {
         <h1 className="text-[13px] capitalize font-semibold text-gray-500">
           Profile
         </h1>
-        <div className="w-full flex gap-2 justify-start items-center">
+        <div className="w-full flex  gap-2 justify-start items-center">
           <Image
             alt=""
             src={`${process.env.NEXT_PUBLIC_API_URL}/${
@@ -177,9 +177,9 @@ const Profile = () => {
             </div>
           ) : (
             <form action="" onSubmit={handleProfileUpdate}>
-              <div className="w-full flex flex-wrap gap-4">
+              <div className="w-full flex flex-col lg:flex-row md:flex-row flex-wrap gap-4">
                 {/* Full Name */}
-                <div className="w-4/12">
+                <div className="w-full  lg:w-4/12 md:w-4/12">
                   <label className={`${lable}`} htmlFor="fullname">
                     Full Name
                   </label>
@@ -195,7 +195,7 @@ const Profile = () => {
                 </div>
 
                 {/* Phone */}
-                <div className="w-4/12">
+                <div className="w-full  lg:w-4/12 md:w-4/12">
                   <label className={`${lable}`} htmlFor="phone">
                     Phone
                   </label>
@@ -211,7 +211,7 @@ const Profile = () => {
                 </div>
 
                 {/* Bio */}
-                <div className="w-4/12">
+                <div className="w-full  lg:w-4/12 md:w-4/12">
                   <label className={`${lable}`} htmlFor="bio">
                     Bio
                   </label>
@@ -227,7 +227,7 @@ const Profile = () => {
                 </div>
 
                 {/* Country */}
-                <div className="w-4/12">
+                <div className="w-full  lg:w-4/12 md:w-4/12">
                   <label className={`${lable}`} htmlFor="country">
                     Country
                   </label>

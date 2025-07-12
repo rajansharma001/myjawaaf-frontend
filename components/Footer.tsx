@@ -9,130 +9,131 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="bg-black  py-10  w-full flex flex-col items-center justify-center  border-t-2 border-gray-400">
-      <div className="flex justify-between items-center mb-3  w-[80%] text-gray">
-        <div className="w-4/12 gap-3 flex flex-col justify-center  ">
-          <div className="flex w-full items-center gap-2">
+    <div className="bg-black py-10 w-full flex flex-col items-center justify-center border-t-2 border-gray-400">
+      <div className="w-[90%] flex flex-col md:flex-row flex-wrap justify-between items-start gap-8 text-gray-400">
+        {/* Brand Section */}
+        <div className="w-full md:w-[45%] lg:w-[30%] flex flex-col gap-3">
+          <div className="flex items-center gap-2">
             <PiGraduationCap className="text-primary-500 text-3xl font-bold" />
-            <h1 className="text-gray-300 font-semibold  text-2xl ">E-Tutor</h1>
+            <h1 className="text-gray-300 font-semibold text-2xl">E-Tutor</h1>
           </div>
-          <p className="text-[12px] text-gray w-[70%]">
+          <p className="text-[12px] text-gray-400 max-w-[90%]">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, nam
             autem. Corporis nesciunt in vel?
           </p>
-          <div className="flex gap-3 items-start ">
+          <div className="flex gap-3">
             <FaFacebookF
               size={30}
-              className="bg-primary-500 hover:bg-primary-300 hover:text-primary-500 text-white p-2 cursor-pointer transition ease-in duration-200"
+              className="bg-primary-500 hover:bg-primary-300 hover:text-primary-500 text-white p-2 cursor-pointer transition duration-200"
             />
             <FaInstagram
               size={30}
-              className="bg-primary-500 hover:bg-primary-300 hover:text-primary-500 text-white p-2 cursor-pointer transition ease-in duration-200"
+              className="bg-primary-500 hover:bg-primary-300 hover:text-primary-500 text-white p-2 cursor-pointer transition duration-200"
             />
             <FaYoutube
               size={30}
-              className="bg-primary-500 hover:bg-primary-300 hover:text-primary-500 text-white p-2 cursor-pointer transition ease-in duration-200"
+              className="bg-primary-500 hover:bg-primary-300 hover:text-primary-500 text-white p-2 cursor-pointer transition duration-200"
             />
             <FaLinkedinIn
               size={30}
-              className="bg-primary-500 hover:bg-primary-300 hover:text-primary-500 text-white p-2 cursor-pointer transition ease-in duration-200"
+              className="bg-primary-500 hover:bg-primary-300 hover:text-primary-500 text-white p-2 cursor-pointer transition duration-200"
             />
           </div>
         </div>
-        <div className="w-3/12 flex flex-col justify-center items-start gap-3  text-gray-400">
-          <div>
-            <h1 className="text-[16px] text-gray-300 capitalize font-semibold">
-              Top Category
-            </h1>
-          </div>
+
+        {/* Top Category */}
+        <div className="w-full md:w-[45%] lg:w-[20%] flex flex-col gap-3">
+          <h1 className="text-[16px] text-gray-300 capitalize font-semibold">
+            Top Category
+          </h1>
           <div className="flex flex-col gap-2">
             <Link
               href="#"
-              className="text-[12px]  text-gray cursor-pointer hover:text-primary-200 transition-all duration-200 ease-in"
+              className="text-[12px] hover:text-primary-200 transition duration-200"
             >
               Web Development
             </Link>
             <Link
               href="#"
-              className="text-[12px] text-gray cursor-pointer hover:text-primary-200 transition-all duration-200 ease-in"
+              className="text-[12px] hover:text-primary-200 transition duration-200"
             >
               Mobile Development
             </Link>
             <Link
               href="#"
-              className="text-[12px] text-gray cursor-pointer hover:text-primary-200 transition-all duration-200 ease-in"
+              className="text-[12px] hover:text-primary-200 transition duration-200"
             >
               Blockchain Development
             </Link>
             <Link
               href="#"
-              className="text-[12px] text-gray cursor-pointer hover:text-primary-200 transition-all duration-200 ease-in"
+              className="text-[12px] hover:text-primary-200 transition duration-200"
             >
               Fullstack Development
             </Link>
           </div>
         </div>
-        <div className="w-3/12 flex flex-col justify-center items-start gap-3  text-gray-400">
-          <div>
-            <h1 className="text-[16px] text-gray-300 capitalize font-semibold">
-              Quick Links
-            </h1>
-          </div>
+
+        {/* Quick Links */}
+        <div className="w-full md:w-[45%] lg:w-[20%] flex flex-col gap-3">
+          <h1 className="text-[16px] text-gray-300 capitalize font-semibold">
+            Quick Links
+          </h1>
           <div className="flex flex-col gap-2">
             <Link
               href="#"
-              className="text-[12px] hover:text-primary-200  text-gray cursor-pointer transition-all duration-200 ease-in"
+              className="text-[12px] hover:text-primary-200 transition duration-200"
             >
               About
             </Link>
             <Link
               href="#"
-              className="text-[12px] hover:text-primary-200 text-gray cursor-pointer transition-all duration-200 ease-in"
+              className="text-[12px] hover:text-primary-200 transition duration-200"
             >
               Become Teacher
             </Link>
             <Link
               href="#"
-              className="text-[12px] hover:text-primary-200 text-gray cursor-pointer transition-all duration-200 ease-in"
+              className="text-[12px] hover:text-primary-200 transition duration-200"
             >
               Contact
             </Link>
             <Link
               href="#"
-              className="text-[12px] hover:text-primary-200 text-gray cursor-pointer transition-all duration-200 ease-in"
+              className="text-[12px] hover:text-primary-200 transition duration-200"
             >
               Career
             </Link>
           </div>
         </div>
-        <div className="w-2/12 flex flex-col justify-center items-start gap-3  text-gray-400">
-          <div>
-            <h1 className="text-[16px] text-gray-300 capitalize font-semibold">
-              Support
-            </h1>
-          </div>
+
+        {/* Support */}
+        <div className="w-full md:w-[45%] lg:w-[20%] flex flex-col gap-3">
+          <h1 className="text-[16px] text-gray-300 capitalize font-semibold">
+            Support
+          </h1>
           <div className="flex flex-col gap-2">
             <Link
               href="#"
-              className="text-[12px] hover:text-primary-200  text-gray cursor-pointer transition-all duration-200 ease-in"
+              className="text-[12px] hover:text-primary-200 transition duration-200"
             >
               Help Center
             </Link>
             <Link
               href="#"
-              className="text-[12px] hover:text-primary-200 text-gray cursor-pointer transition-all duration-200 ease-in"
+              className="text-[12px] hover:text-primary-200 transition duration-200"
             >
               FAQs
             </Link>
             <Link
               href="#"
-              className="text-[12px] hover:text-primary-200 text-gray cursor-pointer transition-all duration-200 ease-in"
+              className="text-[12px] hover:text-primary-200 transition duration-200"
             >
               Terms & Conditions
             </Link>
             <Link
               href="#"
-              className="text-[12px] hover:text-primary-200 text-gray cursor-pointer transition-all duration-200 ease-in"
+              className="text-[12px] hover:text-primary-200 transition duration-200"
             >
               Privacy Policy
             </Link>
