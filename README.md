@@ -1,139 +1,115 @@
-# 🎓 MyJawaaf – Frontend (Next.js)
+# MyJawaaf – Frontend (Next.js)
 
-**MyJawaaf** is an **online e-learning platform** currently under active development. It allows admins to manage courses and categories, while users will soon be able to browse and enroll in courses. This repository is the **frontend** built using **Next.js**, **TypeScript**, and **Tailwind CSS**, fully connected to a custom-built backend API.
+**MyJawaaf** is a complete online learning platform that allows users to browse courses, enroll, and start learning. It includes an admin panel for managing categories and courses, and a user dashboard to manage enrollments.
 
-> 🚧 **Status:** Early-stage development – Authentication and Admin Dashboard are completed. Course browsing, enrollment, and user features are under development.
-
----
-
-## 🔗 Live Project
-
-🔗 [Backend Repo (GitHub)](https://github.com/rajansharma001/myjawaaf) — Built with Node.js, Express, TypeScript & MongoDB
+This repository contains the **frontend**, built with **Next.js 15 (App Router)**, **TypeScript**, and **Tailwind CSS**, connected to a custom-built backend API.
 
 ---
 
-## 🔧 Tech Stack
+## 🌐 Live Project
 
-### Frontend
+- 🔗 **Frontend**: [`myjawaaf-frontend`](https://github.com/rajansharma001/myjawaaf-frontend)
+- 🔗 **Backend**: [`myjawaaf-backend`](https://github.com/rajansharma001/myjawaaf-backend)
 
-- **Next.js (App Router)**
+---
+
+## 💻 Tech Stack
+
+- **Next.js 15 (App Router)**
 - **TypeScript**
 - **Tailwind CSS**
-- **ShadCN**
-- **Lucide-react Icons**
+- **ShadCN UI**
+- **React Icons**
 - **React Hook Form**
-- **Fetch API** for backend communication
-
-### Backend (MyJawaaf API)
-
-- Node.js + Express
-- TypeScript
-- MongoDB + Mongoose
-- JWT Auth (HTTP-only cookies)
-- Admin/User role-based middleware
-- Course/category endpoints
+- **Fetch API**
+- **MongoDB (via backend)**
 
 ---
 
-## ✅ Finished Features
+## ✅ Completed Features
 
-### 🔐 Authentication
+### Admin Panel
 
-- Register & Login with validation
-- Secure JWT auth (HTTP-only cookie)
-- Protected routes using `getCurrentUser()`
+- ✅ Role-based admin access
+- ✅ Course Categories – Create / Edit / Delete
+- ✅ Courses – Create / Edit / Delete
+- ✅ Upload thumbnails and course details
+- ✅ Add multiple lessons per course
 
-### 🛠️ Admin Dashboard
+### User Side
 
-- **Course Categories**
-  - Create / Update / Delete
-- **Courses**
-  - Create / Update / Delete
-- Role-based access via server middleware
-
----
-
-## 🧩 Upcoming Features
-
-- ✅ User dashboard
-- ✅ Course browsing & filtering
-- ✅ Course enrollment system
-- ✅ Course details with levels, pricing
-- ✅ Language support
-- ✅ Search, pagination
-- ✅ Toast notifications
+- ✅ User dashboard with enrolled courses
+- ✅ Course browsing with filters and search
+- ✅ Detailed course page (title, description, levels, pricing, video preview)
+- ✅ Course enrollment with:
+  - Free and paid logic
+  - Receipt upload
+- ✅ Multilingual course support (Language tag)
+- ✅ Search for courses
+- ✅ success/error message
 
 ---
 
-## 📂 Project Structure (Frontend)
+## ⚙️ Getting Started
 
+1. **Clone the repo**
+
+```bash
+git clone https://github.com/rajansharma001/myjawaaf-frontend.git
+cd myjawaaf-frontend
 ```
-/app
-  ├─ (auth)         → Login/Register pages
-  ├─ /dashboard     → Admin dashboard for course/category management
-  ├─ /course        → Add/Edit course routes
-  ├─ layout.tsx     → Shared layout
-
-/components         → UI components (inputs, forms, cards)
-/constants          → Static configs (levels, languages)
-/actions            → Server actions (e.g., courseCreate)
-/lib                → Helpers (e.g., getCurrentUser)
-/hooks              → Custom React hooks
-/public             → Assets (logos, icons)
-```
-
----
-
-## ⚙️ Local Development
-
-1. **Clone the repository**
-
-   ```bash
-   git clone https://github.com/rajansharma001/myjawaaf-frontend.git
-   cd myjawaaf-frontend
-   ```
 
 2. **Install dependencies**
 
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 
-3. **Create `.env.local`**
+3. **Add environment variables**
+   Create a `.env.local` file:
 
-   ```env
-   NEXT_PUBLIC_API_URL=https://api.myjawaaf.com  # Your backend base URL
-   ```
+```env
+NEXT_PUBLIC_API_URL=http://localhost:4000
+```
 
-4. **Start development server**
-   ```bash
-   npm run dev
-   ```
+4. **Run the development server**
 
----
-
-## 🔗 Backend Repository
-
-👉 **Backend Code:**  
-[github.com/rajansharma001/myjawaaf](https://github.com/rajansharma001/myjawaaf)
-
-> API built using **Node.js, Express, TypeScript, MongoDB**  
-> Handles user auth, course/category CRUD, role management, etc.
+```bash
+npm run dev
+```
 
 ---
 
-## 👨‍💻 Author
+## 🧠 Backend Overview
+
+The frontend is powered by a custom-built backend available at:
+
+📦 **Backend Repo:** [MyJawaaf Backend](https://github.com/rajansharma001/myjawaaf)
+
+- Node.js, Express, TypeScript
+- MongoDB + Mongoose
+- JWT (HTTP-only cookie)
+- Role-based access
+- File uploads
+- Enrollment logic
+
+---
+
+## 🙋 Author
 
 **Rajan Sharma**  
-Full Stack Developer  
-🔗 [LinkedIn](https://www.linkedin.com/in/rajan-sharma-280764337/)
+🧑‍💻 Full Stack Developer  
+📬 [email.rajan001@gmail.com](mailto:email.rajan001@gmail.com)  
+🔗 [LinkedIn](https://www.linkedin.com/in/rajan-sharma-280764337)
 
 ---
 
-## ⭐️ Show Your Support
+## ⭐ Support
 
-If you like this project:
+If you find this project helpful:
 
 - ⭐ Star the repo
-- 🔁 Share it with developers
-- 💬 Feedback is welcome!
+- 📢 Share it with friends
+- 🛠 Contribute if you'd like!
+
+---
