@@ -84,28 +84,41 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | any
     >
   ) => {
-    const { name, type, value, checked } = e.target;
+    const { name, type, value, checked, files } = e.target;
 
     setFormData((prev) => {
       if (type === "checkbox") {
         return { ...prev, [name]: checked }; // boolean
-      }
-      return { ...prev, [name]: value }; // string/number
+      } else if (type === "file" && files) {
+        return { ...prev, [name]: files[0] };
+      } else return { ...prev, [name]: value }; // string/number
     });
   };
 
+  const form = new FormData();
+  form.append("title", formData.title);
+  form.append("slug", formData.slug);
+  form.append("description", formData.description);
+  form.append("thumbnail", formData.thumbnail); // 👈 File object
+  form.append("categoryId", formData.categoryId as string);
+  form.append("isFree", String(formData.isFree));
+  form.append("price", formData.price);
+  form.append("discount", formData.discount);
+  form.append("level", formData.level);
+  form.append("language", formData.language);
+  form.append("isPublished", String(formData.isPublished));
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/auth/course/update-course/${courseId}`,
         {
-          headers: {
-            "Content-Type": "application/json",
-          },
           method: "PATCH",
           credentials: "include",
-          body: JSON.stringify(formData),
+          body: form,
         }
       );
       const result = await res.json();
@@ -146,8 +159,8 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
   }, []);
 
   return (
-    <div>
-      <div className="w-full lg:p-6 md:p-4 p-2">
+    <div className="w-full backdrop-blur-3xl bg-white p-2 rounded-2xl shadow-2xl">
+      <div className="w-full lg:p-4 md:p-4 p-2">
         {hasMsg && (
           <div className="w-full flex flex-col justify-center items-center bg-white p-6 border border-gray-300 mb-5">
             <p className="text-[12px] font-semibold capitalize text-red-400">
@@ -165,8 +178,8 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
             onSubmit={handleSubmit}
             className="w-full flex flex-col gap-5 items-center justify-center"
           >
-            <div className="flex flex-wrap w-full gap-4">
-              <div className="w-full sm:w-6/12 md:w-4/12">
+            <div className="flex flex-wrap w-full gap-2">
+              <div className="w-full lg:w-4/12 md:w-4/12">
                 <label className={`${lable}`} htmlFor="title">
                   Title
                 </label>
@@ -180,7 +193,7 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
                   placeholder="Course title"
                 />
               </div>
-              <div className="w-full sm:w-6/12 md:w-4/12">
+              <div className="w-full lg:w-4/12 md:w-4/12">
                 <label className={`${lable}`} htmlFor="slug">
                   Slug
                 </label>
@@ -194,11 +207,17 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
                   placeholder="Course slug"
                 />
               </div>
-              <div className="w-full sm:w-6/12 md:w-4/12">
+              <div className="w-full lg:w-3/12 md:w-3/12">
                 <label className={`${lable}`} htmlFor="thumbnail">
                   Thumbnail URL
                 </label>
                 <input
+                  className={`${input}`}
+                  type="file"
+                  onChange={handleChange}
+                  name="thumbnail"
+                />
+                {/* <input
                   className={`${input} min-w-0 w-full`}
                   value={formData.thumbnail}
                   onChange={handleChange}
@@ -206,12 +225,12 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
                   id="thumbnail"
                   name="thumbnail"
                   placeholder="Course thumbnail"
-                />
+                /> */}
               </div>
             </div>
 
-            <div className="flex flex-wrap w-full gap-4">
-              <div className="w-full sm:w-6/12 md:w-4/12">
+            <div className="flex flex-wrap w-full gap-2">
+              <div className="w-full lg:w-3/12 md:w-3/12">
                 <label className={`${lable}`} htmlFor="language">
                   Language
                 </label>
@@ -221,6 +240,7 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
                   value={formData.language}
                   onChange={handleChange}
                 >
+                  <option value="">Select Language</option>
                   {languages.map((lang, index) => (
                     <option key={index} value={lang}>
                       {lang}
@@ -228,7 +248,7 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
                   ))}
                 </select>
               </div>
-              <div className="w-full sm:w-6/12 md:w-4/12">
+              <div className="w-full lg:w-3/12 md:w-3/12">
                 <label className={`${lable}`} htmlFor="categoryId">
                   Category
                 </label>
@@ -238,6 +258,8 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
                   value={formData.categoryId}
                   onChange={handleChange}
                 >
+                  <option value="">Select Category</option>
+
                   {cat &&
                     cat.map((cat: any) => (
                       <option key={cat._id} value={cat._id}>
@@ -246,7 +268,7 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
                     ))}
                 </select>
               </div>
-              <div className="w-full sm:w-6/12 md:w-2/12 flex flex-col justify-center items-center">
+              <div className="w-full lg:w-2/12 md:w-2/12 flex flex-col justify-center items-center">
                 <label className={`${lable} text-center`} htmlFor="isFree">
                   Is Free
                 </label>
@@ -259,7 +281,7 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
                   name="isFree"
                 />
               </div>
-              <div className="w-full sm:w-6/12 md:w-2/12 flex flex-col justify-center items-center">
+              <div className="w-full lg:w-2/12 md:w-2/12 flex flex-col justify-center items-center">
                 <label className={`${lable} text-center`} htmlFor="isPublished">
                   Is Published
                 </label>
@@ -275,7 +297,7 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
             </div>
 
             <div className="flex flex-wrap w-full gap-4">
-              <div className="w-full sm:w-6/12 md:w-4/12">
+              <div className="w-full lg:w-4/12 md:w-4/12">
                 <label className={`${lable}`} htmlFor="price">
                   Price
                 </label>
@@ -289,7 +311,7 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
                   placeholder="Course price"
                 />
               </div>
-              <div className="w-full sm:w-6/12 md:w-4/12">
+              <div className="w-full lg:w-4/12 md:w-4/12">
                 <label className={`${lable}`} htmlFor="discount">
                   Discount (%)
                 </label>
@@ -303,7 +325,7 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
                   placeholder="Discount percentage"
                 />
               </div>
-              <div className="w-full sm:w-6/12 md:w-4/12">
+              <div className="w-full lg:w-3/12 md:w-4/12">
                 <label className={`${lable}`} htmlFor="level">
                   Level
                 </label>
@@ -313,6 +335,7 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
                   value={formData.level}
                   onChange={handleChange}
                 >
+                  <option value="">Select Level</option>
                   {levels.map((level, index) => (
                     <option key={index} value={level}>
                       {level}
@@ -323,7 +346,7 @@ const UpdateCourse = ({ courseId, updateTable }: Props) => {
             </div>
 
             <div className="flex flex-wrap w-full gap-4">
-              <div className="w-full md:w-10/12">
+              <div className="w-full md:w-12/12">
                 <label className={`${lable}`} htmlFor="description">
                   Description
                 </label>

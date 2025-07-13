@@ -8,6 +8,7 @@ import {
   BiVideo,
   BiVideoPlus,
 } from "react-icons/bi";
+import { FaUserEdit } from "react-icons/fa";
 import { MdManageSearch } from "react-icons/md";
 import { SiCratedb } from "react-icons/si";
 
@@ -64,6 +65,13 @@ const Menu = ({ style, iconStyle }: Props) => {
       >
         <BiAddToQueue className={`${iconStyle}`} />
         <span className={`${style}`}>Enroll</span>
+      </Link>
+      <Link
+        href="/admin/dashboard/profile"
+        className={`flex gap-2 items-center `}
+      >
+        <FaUserEdit className={`${iconStyle}`} />
+        <span className={`${style}`}>Profile</span>
       </Link>
     </div>
   );

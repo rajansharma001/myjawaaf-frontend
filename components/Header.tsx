@@ -1,12 +1,13 @@
 "use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { PiGraduationCap } from "react-icons/pi";
 import { useAuth } from "../context/authContext";
 import Image from "next/image";
 import { CategoryProps, UserProps } from "./dashboard/styles/inputField";
+import FormButton from "./FormButton";
 
 const Header = () => {
   const { user, logoutUser } = useAuth();
@@ -14,23 +15,23 @@ const Header = () => {
 
   const [search, setSearch] = useState("");
   const [filterCategory, setFilterCategory] = useState("");
-  const [cats, setCats] = useState<CategoryProps[]>([]);
+  // const [cats, setCats] = useState<CategoryProps[]>([]);
   const [profileMenu, setProfileMenu] = useState(false);
   const [userDetails, setUserDetails] = useState<UserProps>();
 
-  // 🔁 Auto redirect on change
-  useEffect(() => {
+  const handleSearch = (e: FormEvent) => {
+    e.preventDefault();
     const query = new URLSearchParams();
     if (search.trim()) query.append("search", search.trim());
     if (filterCategory) query.append("category", filterCategory);
     router.push(`/search?${query.toString()}`);
-  }, [search, filterCategory]);
-
-  const getCategories = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/category`);
-    const result = await res.json();
-    setCats(result.getCat);
   };
+
+  // const getCategories = async () => {
+  //   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/category`);
+  //   const result = await res.json();
+  //   setCats(result.getCat);
+  // };
 
   const getUser = async () => {
     try {
@@ -45,7 +46,7 @@ const Header = () => {
   };
 
   useEffect(() => {
-    getCategories();
+    // getCategories();
     getUser();
   }, []);
 
@@ -58,31 +59,38 @@ const Header = () => {
           <h1 className="text-heading font-semibold text-md">E-Tutor</h1>
         </Link>
 
-        {/* Category Dropdown */}
-        <select
-          value={filterCategory}
-          onChange={(e) => setFilterCategory(e.target.value)}
-          className="w-full md:w-auto p-2 text-sm border border-gray-300 rounded"
+        <form
+          action=""
+          onSubmit={handleSearch}
+          className="w-full lg:w-[50%] md:w-[250px] flex gap-2 items-center"
         >
-          <option value="">All Categories</option>
-          {cats.map((cat) => (
-            <option key={cat._id} value={cat._id}>
-              {cat.title}
-            </option>
-          ))}
-        </select>
+          {/* Category Dropdown */}
+          {/* <select
+            value={filterCategory}
+            onChange={(e) => setFilterCategory(e.target.value)}
+            className="w-full md:w-auto p-1.5 text-[13px] text-gray-500 border border-gray-300 focus:outline-none"
+          >
+            <option value="">All Categories</option>
+            {cats.map((cat) => (
+              <option key={cat._id} value={cat._id}>
+                {cat.title}
+              </option>
+            ))}
+          </select> */}
 
-        {/* Search Input */}
-        <div className="flex items-center gap-2 w-full md:w-[250px] border border-gray-300 px-2 rounded-md">
-          <CiSearch className="text-xl text-gray-500" />
-          <input
-            type="text"
-            placeholder="Search your fav topic"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full p-2 text-sm border-none focus:outline-none"
-          />
-        </div>
+          {/* Search Input */}
+          <div className="flex items-center gap-2 w-full border border-gray-300 px-2">
+            <CiSearch className="text-xl text-gray-500" />
+            <input
+              type="text"
+              placeholder="Search your fav topic"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full p-1.5 text-[13px] text-gray-500 border-none focus:outline-none"
+            />
+          </div>
+          <FormButton title="search" />
+        </form>
       </div>
 
       {/* Right Section */}
@@ -90,18 +98,21 @@ const Header = () => {
         {!user ? (
           <div className="flex flex-wrap justify-center gap-3 w-full md:w-auto">
             <Link href="/signin">
-              <button className="py-1.5 px-3 bg-primary-500 text-[12px] hover:bg-primary-300 hover:text-primary-500 text-white rounded-md capitalize font-semibold transition duration-300">
+              <button className="py-1.5 px-3 cursor-pointer bg-primary-500 text-[12px] hover:bg-primary-300 hover:text-primary-500 text-white  capitalize font-semibold transition duration-300">
                 Sign in
               </button>
             </Link>
             <Link href="/signup">
-              <button className="py-1.5 px-3 bg-primary-300 text-[12px] hover:bg-primary-500 hover:text-white text-primary-500 rounded-md capitalize font-semibold transition duration-300">
+              <button className="py-1.5 px-3 cursor-pointer bg-primary-300 text-[12px] hover:bg-primary-500 hover:text-white text-primary-500  capitalize font-semibold transition duration-300">
                 Create an Account
               </button>
             </Link>
           </div>
         ) : (
           <div className="flex items-center gap-4 relative">
+            <h1 className="text-[13px] font-semibold text-gray-500 capitalize">
+              Hi, <strong>{userDetails?.fullname}</strong>
+            </h1>
             <Image
               src={`${process.env.NEXT_PUBLIC_API_URL}/${userDetails?.profileImg}`}
               alt="userImg"
@@ -113,9 +124,17 @@ const Header = () => {
             {profileMenu && (
               <div className="absolute z-10 w-40 top-full left-1/2 -translate-x-1/2 mt-2 p-4 rounded-xl bg-gray-800 flex flex-col text-gray-200 text-[13px] transition-all duration-300 ease-in shadow-lg">
                 <div>{user?.email}</div>
-                <Link href="/student/dashboard">Dashboard</Link>
-                <Link href="/student/dashboard/profile">Profile</Link>
+                <Link href="/student/dashboard" className="cursor-pointer">
+                  Dashboard
+                </Link>
+                <Link
+                  href="/student/dashboard/profile"
+                  className="cursor-pointer"
+                >
+                  Profile
+                </Link>
                 <button
+                  className="cursor-pointer"
                   onClick={async () => {
                     await logoutUser();
                     router.push("/");

@@ -72,7 +72,7 @@ const Course = () => {
     form.append("slug", formData.slug);
     form.append("description", formData.description);
     form.append("thumbnail", formData.thumbnail); // 👈 File object
-    form.append("categoryId", formData.categoryId);
+    form.append("categoryId", formData.categoryId as string);
     form.append("isFree", String(formData.isFree));
     form.append("price", formData.price);
     form.append("discount", formData.discount);
@@ -198,6 +198,8 @@ const Course = () => {
                 value={formData.language}
                 onChange={handleChange}
               >
+                <option value="">Select Language</option>
+
                 {languages.map((lang, index) => (
                   <option key={index} value={lang} className={``}>
                     {lang}
@@ -214,9 +216,10 @@ const Course = () => {
                 name="categoryId"
                 id=""
                 className={`${input}`}
-                value={formData.categoryId}
+                value={formData.categoryId as string}
                 onChange={handleChange}
               >
+                <option value="">Select Category</option>
                 {cat &&
                   cat.map((cat: any) => (
                     <option key={cat._id} value={cat._id} className={``}>

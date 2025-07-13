@@ -144,31 +144,31 @@ const Lessons = () => {
                   key={lesson._id}
                   className="flex text-[12px] text-gray-800 border-t bg-white border-gray-200"
                 >
-                  <div className="w-40 h-16 flex items-center justify-center border-r border-gray-100">
+                  <div className="w-40 h-16 flex items-center justify-start p-2 border-r border-gray-100">
                     {lesson.title}
                   </div>
-                  <div className="w-40 h-16 flex items-center justify-center border-r border-gray-100">
+                  <div className="w-40 h-16 flex items-center justify-start p-2 border-r border-gray-100">
                     {lesson.slug}
                   </div>
-                  <div className="w-40 h-16 flex items-center justify-center border-r border-gray-100">
+                  <div className="w-40 h-16 flex items-center justify-start p-2 border-r border-gray-100">
                     <video
                       className="h-15 w-[80%]"
                       controls
                       src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${lesson.videoUrl}`}
                     />
                   </div>
-                  <div className="w-50 h-16 flex items-center justify-center border-r border-gray-100">
+                  <div className="w-50 h-16 flex items-center justify-start p-2 border-r border-gray-100">
                     {course?.find((c: CourseProps) => c._id === lesson.courseId)
                       ?.title || "unknown"}
                   </div>
-                  <div className="w-20 h-16 flex items-center justify-center border-r border-gray-100">
+                  <div className="w-20 h-16 flex items-center justify-start p-2 border-r border-gray-100">
                     {lesson.isPreview ? "Yes" : "No"}
                   </div>
-                  <div className="w-35 h-16 flex items-center justify-center border-r border-gray-100">
+                  <div className="w-35 h-16 flex items-center justify-start p-2 border-r border-gray-100">
                     {lesson.duration}
                   </div>
-                  <div className="w-50 h-16 flex items-center justify-center border-r border-gray-100">
-                    {lesson.description}
+                  <div className="w-50 h-16 flex items-center justify-start p-2 border-r border-gray-100">
+                    {lesson.description.slice(0, 50)}
                   </div>
                   <div className="w-20 h-16 flex items-center justify-between gap-2">
                     <button

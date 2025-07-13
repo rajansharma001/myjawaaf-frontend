@@ -1,7 +1,8 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PiBell } from "react-icons/pi";
 import { useAuth } from "../../context/authContext";
+import { UserProps } from "./styles/inputField";
 
 const Header = () => {
   const { user, logoutUser } = useAuth();
@@ -10,6 +11,23 @@ const Header = () => {
   };
 
   const [profileMenu, setProfileMenu] = useState(false);
+  const [userDetails, setUserDetails] = useState<UserProps>();
+
+  const getUser = async () => {
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/userid`, {
+        credentials: "include",
+      });
+      const result = await res.json();
+      setUserDetails(result.getUserById);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
   return (
     <header className="lg:p-4 md:p-4 p-2 w-full bg-gray-100 flex justify-between">
       <div className="w-6/12 flex items-center">
@@ -19,17 +37,13 @@ const Header = () => {
       </div>
 
       <div className="w-6/12 lg:gap-6 md:gap-4 gap-2 flex items-center justify-end">
-        <div className="relative flex">
-          <PiBell size={24} />
-          <span className="h-3 w-3 bg-amber-300 rounded-full shadow-2xl shadow-amber-400 animate-bounce absolute inset-0 ml-3"></span>
-        </div>
         <div className="relative flex flex-col gap-6 ">
           <Image
-            src="/defaultuser.jpeg"
+            src={`${process.env.NEXT_PUBLIC_API_URL}/${userDetails?.profileImg}`}
             alt="userImg"
-            width={50}
-            height={50}
-            className=" rounded-full border-2 border-gray-400 cursor-pointer "
+            width={40}
+            height={40}
+            className="rounded-full object-cover border border-gray-400 cursor-pointer w-10 h-10"
             onClick={() => setProfileMenu(!profileMenu)}
           />
           {/* profile click menu */}

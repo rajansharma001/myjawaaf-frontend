@@ -14,7 +14,7 @@ export interface CourseProps {
   slug: string;
   description: string;
   thumbnail: string;
-  categoryId: string;
+  categoryId: string | CategoryProps;
   isFree: boolean;
   price: string;
   discount: string;

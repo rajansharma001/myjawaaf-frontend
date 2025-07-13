@@ -28,6 +28,8 @@ const Enroll = () => {
   const [updateEnrollment, setUpdateEnrollment] = useState(false);
   const [enrollId, setEnrollId] = useState("");
 
+  console.log("enrolled id for deleting: ", enrollId);
+
   const [enrolls, setEnrolls] = useState<enrollProps[]>([]);
   const [hasMsg, setHasMsg] = useState(false);
   const [msg, setMsg] = useState("");
@@ -158,6 +160,7 @@ const Enroll = () => {
         }
       );
       const result = await res.json();
+      console.log("delete msg: ", result.msg);
       if (!res.ok) {
         setHasMsg(true);
         setMsg(result.msg);

@@ -143,6 +143,7 @@ const Lesson = () => {
                   onChange={handleChange}
                   value={formData.courseId}
                 >
+                  <option value="">Select Course</option>
                   {course?.map((c, i) => (
                     <option key={i} value={c._id}>
                       {c.title}

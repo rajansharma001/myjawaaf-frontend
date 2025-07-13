@@ -1,3 +1,4 @@
+"use client";
 import {
   FaFacebookF,
   FaInstagram,
@@ -6,8 +7,21 @@ import {
 } from "react-icons/fa";
 import { PiGraduationCap } from "react-icons/pi";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { CategoryProps } from "./dashboard/styles/inputField";
 
 const Footer = () => {
+  const [cats, setCats] = useState<CategoryProps[]>([]);
+
+  const getCategories = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/category`);
+    const result = await res.json();
+    setCats(result.getCat);
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, []);
   return (
     <div className="bg-black py-10 w-full flex flex-col items-center justify-center border-t-2 border-gray-400">
       <div className="w-[90%] flex flex-col md:flex-row flex-wrap justify-between items-start gap-8 text-gray-400">
@@ -47,30 +61,16 @@ const Footer = () => {
             Top Category
           </h1>
           <div className="flex flex-col gap-2">
-            <Link
-              href="#"
-              className="text-[12px] hover:text-primary-200 transition duration-200"
-            >
-              Web Development
-            </Link>
-            <Link
-              href="#"
-              className="text-[12px] hover:text-primary-200 transition duration-200"
-            >
-              Mobile Development
-            </Link>
-            <Link
-              href="#"
-              className="text-[12px] hover:text-primary-200 transition duration-200"
-            >
-              Blockchain Development
-            </Link>
-            <Link
-              href="#"
-              className="text-[12px] hover:text-primary-200 transition duration-200"
-            >
-              Fullstack Development
-            </Link>
+            {cats &&
+              cats.map((cat) => (
+                <Link
+                  key={cat._id}
+                  href={`/search?category=${cat._id}`}
+                  className="text-[12px] hover:text-primary-200 transition duration-200"
+                >
+                  {cat.title}
+                </Link>
+              ))}
           </div>
         </div>
 

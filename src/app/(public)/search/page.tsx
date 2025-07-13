@@ -94,7 +94,9 @@ const SearchPage = () => {
               />
               <div className="w-full px-2 py-2 flex justify-between items-center text-[12px]">
                 <span className="p-1 px-2 text-[10px] flex items-center justify-center bg-primary-300 text-primary-500 font-semibold rounded-sm">
-                  {course.categoryId?.title || "unknown"}
+                  {typeof course.categoryId === "string"
+                    ? "unknown"
+                    : course.categoryId?.title}
                 </span>
                 <span className="text-sm font-semibold text-primary-500">
                   {course.isFree ? "Free" : `$${course.price}`}

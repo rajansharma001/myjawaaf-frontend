@@ -130,9 +130,7 @@ const AllCourses = () => {
               <div className="w-2/12 h-8 flex items-center justify-center border-r border-gray-300">
                 Title
               </div>
-              <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
-                Slug
-              </div>
+
               <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
                 Thumbnail
               </div>
@@ -182,9 +180,7 @@ const AllCourses = () => {
                   <div className="w-2/12 h-16 flex items-center justify-center border-r border-gray-100 ">
                     {course.title}
                   </div>
-                  <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
-                    {course.slug}
-                  </div>
+
                   <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
                     <Image
                       src={`${process.env.NEXT_PUBLIC_API_URL}/${course.thumbnail}`}
@@ -242,7 +238,7 @@ const AllCourses = () => {
       {/* update pop */}
 
       {updatePop && (
-        <div className="w-full shadow-md shadow-gray-400  absolute inset-0 top-0 backdrop-blur-2xl p-6">
+        <div className="w-full shadow-md shadow-gray-400  absolute inset-0 top-0 ">
           <div className="w-full flex justify-end">
             <button
               onClick={() => setUpdatePop(false)}
@@ -258,7 +254,7 @@ const AllCourses = () => {
       {/* lesson pop */}
       <div>
         {lessonPop && (
-          <div className="w-full absolute inset-0 top-0 backdrop-blur-2xl overflow-x-auto">
+          <div className="w-full absolute inset-0 top-0 backdrop-blur-2xl overflow-x-auto h-150">
             <div className="flex justify-end items-end p-2">
               <button
                 onClick={() => setLessonPop(false)}
@@ -299,32 +295,32 @@ const AllCourses = () => {
                     key={lesson._id}
                     className="flex w-full text-[12px] text-gray-800 border-t bg-white border-gray-200"
                   >
-                    <div className="w-2/12 h-16 flex items-center justify-center border-r border-gray-100">
+                    <div className="w-2/12 h-16 flex items-center justify-start p-2 border-r border-gray-100">
                       {lesson.title}
                     </div>
-                    <div className="w-2/12 h-16 flex items-center justify-center border-r border-gray-100">
+                    <div className="w-2/12 h-16 flex items-center justify-start p-2 border-r border-gray-100">
                       {lesson.slug}
                     </div>
-                    <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
+                    <div className="w-1/12 h-16 flex items-center justify-start p-2 border-r border-gray-100">
                       <video
                         className="h-15 w-[80%]"
                         controls
                         src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${lesson.videoUrl}`}
                       />
                     </div>
-                    <div className="w-3/12 h-16 flex items-center justify-center border-r border-gray-100">
+                    <div className="w-3/12 h-16 flex items-center justify-start p-2 border-r border-gray-100">
                       {courses?.find(
                         (c: CourseProps) => c._id === lesson.courseId
                       )?.title || "unknown"}
                     </div>
-                    <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
+                    <div className="w-1/12 h-16 flex items-center justify-start p-2 border-r border-gray-100">
                       {lesson.isPreview ? "Yes" : "No"}
                     </div>
-                    <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
+                    <div className="w-1/12 h-16 flex items-center justify-start p-2 border-r border-gray-100">
                       {lesson.duration}
                     </div>
-                    <div className="w-2/12 h-16 flex items-center justify-center border-r border-gray-100">
-                      {lesson.description}
+                    <div className="w-2/12 h-16 flex items-center  overflow-hidden justify-start p-2 border-r border-gray-100">
+                      {lesson.description.slice(0, 55)}
                     </div>
                   </div>
                 ))}

@@ -91,7 +91,7 @@ const StudentDashboardLayout = ({
               Logout
             </button>
           </div>
-          <div className="w-full lg:w-4/12 md:w-4/12 border-1 border-gray-300 rounded-sm p-6  shadow-2xl shadow-inherit  text-[13px] capitalize font-semibold text-gray-500">
+          <div className="w-full lg:w-8/12 md:w-8/12 border-1 border-gray-300 rounded-sm p-6  shadow-2xl shadow-inherit  text-[13px] capitalize font-semibold text-gray-500">
             {children}
           </div>
         </div>
