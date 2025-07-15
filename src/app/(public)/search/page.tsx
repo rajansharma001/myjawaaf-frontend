@@ -1,7 +1,8 @@
 "use client";
+
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { FaStar } from "react-icons/fa";
 import {
   CategoryProps,
@@ -10,7 +11,7 @@ import {
 } from "../../../../components/dashboard/styles/inputField";
 import LinkButton from "../../../../components/LinkButton";
 
-const SearchPage = () => {
+const SearchContent = () => {
   const searchParams = useSearchParams();
 
   const [courses, setCourses] = useState<CourseProps[]>([]);
@@ -37,9 +38,7 @@ const SearchPage = () => {
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/category`,
-        {
-          method: "GET",
-        }
+        { method: "GET" }
       );
       const result = await res.json();
       setCategories(result.getCat);
@@ -69,8 +68,6 @@ const SearchPage = () => {
     getCategory();
     getEnrolls();
   }, []);
-
-  console.log("categiry", categories);
 
   return (
     <div className="w-full py-16 bg-gray-100 flex flex-col items-center justify-center">
@@ -140,6 +137,14 @@ const SearchPage = () => {
         )}
       </div>
     </div>
+  );
+};
+
+const SearchPage = () => {
+  return (
+    <Suspense fallback={<div className="text-center mt-20">Loading...</div>}>
+      <SearchContent />
+    </Suspense>
   );
 };
 

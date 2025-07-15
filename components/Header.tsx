@@ -6,7 +6,7 @@ import { CiSearch } from "react-icons/ci";
 import { PiGraduationCap } from "react-icons/pi";
 import { useAuth } from "../context/authContext";
 import Image from "next/image";
-import { CategoryProps, UserProps } from "./dashboard/styles/inputField";
+import { UserProps } from "./dashboard/styles/inputField";
 import FormButton from "./FormButton";
 
 const Header = () => {
