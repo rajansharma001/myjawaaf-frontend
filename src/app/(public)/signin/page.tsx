@@ -171,7 +171,7 @@ const Signin = () => {
                         <strong>Password</strong>: admin@123
                       </h1>
                     </div>
-                    <div className="w-full md:w-[50%] lg:w-[50]">
+                    <div className="w-full md:w-[50%] lg:w-[50%]">
                       <h1 className="font-bold text-[13px]">For Student:</h1>
                       <h1>
                         <strong>Email</strong>: student@gmail.com
