@@ -56,10 +56,10 @@ const Course = () => {
 
     setFormData((prev) => {
       if (type === "checkbox") {
-        return { ...prev, [name]: checked }; // boolean
+        return { ...prev, [name]: checked };
       } else if (type === "file" && files) {
         return { ...prev, [name]: files[0] };
-      } else return { ...prev, [name]: value }; // string/number
+      } else return { ...prev, [name]: value };
     });
   };
 
@@ -71,7 +71,7 @@ const Course = () => {
     form.append("title", formData.title);
     form.append("slug", formData.slug);
     form.append("description", formData.description);
-    form.append("thumbnail", formData.thumbnail); // 👈 File object
+    form.append("thumbnail", formData.thumbnail);
     form.append("categoryId", formData.categoryId as string);
     form.append("isFree", String(formData.isFree));
     form.append("price", formData.price);
@@ -118,7 +118,6 @@ const Course = () => {
     }
   };
 
-  console.log(formData);
   setTimeout(() => {
     setHasMsg(false);
   }, 3000);
