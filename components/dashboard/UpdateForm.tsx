@@ -24,7 +24,7 @@ const UpdateForm = ({ id }: Props) => {
   const getCategory = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}api/auth/category/get-category/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/category/get-category/${id}`,
         {
           method: "GET",
           credentials: "include",
@@ -59,7 +59,7 @@ const UpdateForm = ({ id }: Props) => {
     try {
       setLoading(true);
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}api/auth/category/update-category/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/category/update-category/${id}`,
         {
           method: "PATCH",
           headers: {

@@ -51,7 +51,7 @@ const UpdateLesson = ({ lessonId, updateTable }: Props) => {
 
   const getCourse = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}api/auth/course/get-course`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/course/get-course`,
       { method: "GET", credentials: "include" }
     );
     const result = await res.json();
@@ -61,7 +61,7 @@ const UpdateLesson = ({ lessonId, updateTable }: Props) => {
   const getLesson = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}api/auth/lesson/get-lesson/${lessonId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/lesson/get-lesson/${lessonId}`,
         {
           method: "GET",
           credentials: "include",
@@ -96,7 +96,7 @@ const UpdateLesson = ({ lessonId, updateTable }: Props) => {
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}api/auth/lesson/update-lesson/${lessonId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/lesson/update-lesson/${lessonId}`,
         {
           method: "PATCH",
           credentials: "include",

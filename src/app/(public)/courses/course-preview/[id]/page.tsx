@@ -42,7 +42,7 @@ const PreviewCourse = () => {
 
   const getUsers = async () => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/users`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users`, {
         method: "GET",
       });
       const result = await res.json();
@@ -55,7 +55,7 @@ const PreviewCourse = () => {
   const getEnrolls = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}api/enrollments`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/enrollments`,
         { method: "GET", credentials: "include" }
       );
       const result = await res.json();
@@ -67,7 +67,7 @@ const PreviewCourse = () => {
   const getCourse = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}api/course/${courseId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/course/${courseId}`,
         { method: "GET" }
       );
       const result = await res.json();
@@ -80,7 +80,7 @@ const PreviewCourse = () => {
   const getLesson = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}api/lesson/${courseId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/lesson/${courseId}`,
         {
           method: "GET",
         }

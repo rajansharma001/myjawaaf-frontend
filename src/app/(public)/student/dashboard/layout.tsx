@@ -21,7 +21,7 @@ const StudentDashboardLayout = ({
 
   const getUser = async () => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/userid`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/userid`, {
         method: "GET",
         credentials: "include",
       });

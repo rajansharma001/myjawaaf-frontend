@@ -57,7 +57,7 @@ const UpdateEnroll = ({
 
   const getCourse = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}api/auth/course/get-course`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/course/get-course`,
       {
         method: "GET",
         credentials: "include",
@@ -69,7 +69,7 @@ const UpdateEnroll = ({
 
   const getUser = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}api/auth/get-user`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/get-user`,
       {
         method: "GET",
         credentials: "include",
@@ -80,7 +80,7 @@ const UpdateEnroll = ({
   };
   const getEnroll = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}api/auth/enroll/get-enrolled/${enrollId}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/enroll/get-enrolled/${enrollId}`,
       {
         method: "GET",
         credentials: "include",
@@ -129,7 +129,7 @@ const UpdateEnroll = ({
       setLoading(true);
 
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}api/auth/enroll/update-enrolled/${enrollId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/enroll/update-enrolled/${enrollId}`,
         {
           method: "PATCH",
           credentials: "include",

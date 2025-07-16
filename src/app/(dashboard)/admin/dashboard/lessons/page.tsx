@@ -27,7 +27,7 @@ const Lessons = () => {
   const getLesson = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}api/auth/lesson/get-lesson`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/lesson/get-lesson`,
         {
           method: "GET",
           credentials: "include",
@@ -42,7 +42,7 @@ const Lessons = () => {
   const getCourse = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}api/auth/course/get-course`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/course/get-course`,
         {
           method: "GET",
           credentials: "include",
@@ -60,7 +60,7 @@ const Lessons = () => {
     try {
       setLoading(true);
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}api/auth/lesson/delete-lesson/${lessonId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/lesson/delete-lesson/${lessonId}`,
         {
           method: "DELETE",
           credentials: "include",

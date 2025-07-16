@@ -33,7 +33,7 @@ const Signin = () => {
     setIsLoading(true);
     e.preventDefault();
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}api/auth/signin`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/signin`,
       {
         headers: {
           "Content-Type": "application/json",

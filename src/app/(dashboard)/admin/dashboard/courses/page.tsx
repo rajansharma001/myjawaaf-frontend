@@ -33,7 +33,7 @@ const AllCourses = () => {
 
   const getCourse = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}api/auth/course/get-course`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/course/get-course`,
       {
         method: "GET",
         credentials: "include",
@@ -45,7 +45,7 @@ const AllCourses = () => {
 
   const getCat = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}api/auth/category/get-category`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/category/get-category`,
       {
         method: "GET",
         credentials: "include",
@@ -57,7 +57,7 @@ const AllCourses = () => {
 
   const getLesson = async (id: string) => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}api/auth/lesson/get-course-lesson/${id}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/lesson/get-course-lesson/${id}`,
       {
         method: "GET",
         credentials: "include",
@@ -70,7 +70,7 @@ const AllCourses = () => {
     try {
       setLoading(true);
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}api/auth/course/delete-course/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/course/delete-course/${id}`,
         {
           method: "DELETE",
           credentials: "include",

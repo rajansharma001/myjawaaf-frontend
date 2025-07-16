@@ -25,7 +25,7 @@ const CategoryForm = () => {
     try {
       setLoading(true);
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}api/auth/category/create-category`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/category/create-category`,
         {
           method: "POST",
           headers: {

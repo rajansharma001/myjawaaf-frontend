@@ -14,7 +14,7 @@ const Footer = () => {
   const [cats, setCats] = useState<CategoryProps[]>([]);
 
   const getCategories = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/category`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/category`);
     const result = await res.json();
     setCats(result.getCat);
   };

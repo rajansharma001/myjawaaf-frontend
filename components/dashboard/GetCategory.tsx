@@ -16,7 +16,7 @@ const GetCategory = () => {
   const [popUpdateOpen, setPopUpdateOpen] = useState(false);
   const getCategory = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}api/auth/category/get-category`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/category/get-category`,
       {
         method: "GET",
         credentials: "include",
@@ -28,7 +28,7 @@ const GetCategory = () => {
 
   const deleteCategory = async (id: string) => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}api/auth/category/delete-category/${id}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/category/delete-category/${id}`,
       {
         method: "DELETE",
         credentials: "include",

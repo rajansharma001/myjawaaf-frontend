@@ -7,7 +7,7 @@ const CourseCategoryCard = () => {
   const [course, setCourse] = useState<CourseProps[]>([]);
 
   const category = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/category`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/category`, {
       method: "GET",
     });
     const result = await res.json();
@@ -16,7 +16,7 @@ const CourseCategoryCard = () => {
 
   const getCourse = async () => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/course`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/course`, {
         method: "GET",
       });
       const result = await res.json();

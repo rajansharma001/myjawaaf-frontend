@@ -21,7 +21,7 @@ const Learn = () => {
   const getCourse = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}api/course/${courseId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/course/${courseId}`,
         { method: "GET" }
       );
       const result = await res.json();
@@ -33,7 +33,7 @@ const Learn = () => {
   const getLesson = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}api/lesson/${courseId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/lesson/${courseId}`,
         { method: "GET" }
       );
       const result = await res.json();
