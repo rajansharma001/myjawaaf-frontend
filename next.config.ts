@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: ["localhost"], // ✅ Add your backend host
+    domains: ["localhost", "myjawaaf-backend.onrender.com"], // ✅ Add your backend host
   },
 };
 
