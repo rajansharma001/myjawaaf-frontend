@@ -162,7 +162,7 @@ const Signin = () => {
                     </div>
                   </form>
                   <div className="w-full flex flex-col lg:flex-row md:flex-row justify-between text-[12px] mt-10">
-                    <div className={`w-full md:w-[50%] lg:w-[50%]`}>
+                    <div className="w-full md:w-[50%] lg:w-[50%]">
                       <h1 className="font-bold text-[13px]">For Admin:</h1>
                       <h1>
                         <strong>Email</strong>: admin@gmail.com
