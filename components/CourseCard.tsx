@@ -77,6 +77,7 @@ const CourseCard = () => {
                 alt="courseImg"
                 className="max-h-35 aspect-square object-cover "
               />
+              <h1>{course.thumbnail}</h1>
               <div className="w-full px-2 flex justify-between items-center text-[12px] shadow-2xl shadow-amber-400">
                 <span className="p-1 px-2 text-[10px] flex items-center justify-center bg-primary-300 text-primary-500 font-semibold rounded-sm">
                   {categories &&
