@@ -58,7 +58,7 @@ const Enroll = () => {
 
   const getCourse = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/course/get-course`,
+      `${process.env.NEXT_PUBLIC_API_URL}api/auth/course/get-course`,
       {
         method: "GET",
         credentials: "include",
@@ -70,7 +70,7 @@ const Enroll = () => {
 
   const getUser = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/get-user`,
+      `${process.env.NEXT_PUBLIC_API_URL}api/auth/get-user`,
       {
         method: "GET",
         credentials: "include",
@@ -110,7 +110,7 @@ const Enroll = () => {
       setLoading(true);
 
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/enroll/enroll-course`,
+        `${process.env.NEXT_PUBLIC_API_URL}api/auth/enroll/enroll-course`,
         {
           method: "POST",
           credentials: "include",
@@ -136,7 +136,7 @@ const Enroll = () => {
 
   const getEnroll = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/enroll/get-enrolled`,
+      `${process.env.NEXT_PUBLIC_API_URL}api/auth/enroll/get-enrolled`,
       {
         method: "GET",
         credentials: "include",
@@ -153,7 +153,7 @@ const Enroll = () => {
     setLoading(true);
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/enroll/delete-enrolled/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}api/auth/enroll/delete-enrolled/${id}`,
         {
           method: "DELETE",
           credentials: "include",

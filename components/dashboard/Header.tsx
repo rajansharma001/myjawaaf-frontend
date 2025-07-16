@@ -15,7 +15,7 @@ const Header = () => {
 
   const getUser = async () => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/userid`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/userid`, {
         credentials: "include",
       });
       const result = await res.json();

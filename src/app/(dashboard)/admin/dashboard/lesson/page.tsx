@@ -53,7 +53,7 @@ const Lesson = () => {
 
   const getCourse = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/course/get-course`,
+      `${process.env.NEXT_PUBLIC_API_URL}api/auth/course/get-course`,
       { method: "GET", credentials: "include" }
     );
     const result = await res.json();
@@ -74,7 +74,7 @@ const Lesson = () => {
       setLoading(true);
 
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/lesson/create-lesson`,
+        `${process.env.NEXT_PUBLIC_API_URL}api/auth/lesson/create-lesson`,
         {
           method: "POST",
 

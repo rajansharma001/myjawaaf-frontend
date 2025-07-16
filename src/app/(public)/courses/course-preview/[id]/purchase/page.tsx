@@ -45,7 +45,7 @@ const Purchase = () => {
   const getCourse = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/course/${courseId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}api/course/${courseId}`,
         { method: "GET" }
       );
       const result = await res.json();
@@ -76,7 +76,7 @@ const Purchase = () => {
     try {
       setLoading(true);
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/enroll/enroll-course`,
+        `${process.env.NEXT_PUBLIC_API_URL}api/auth/enroll/enroll-course`,
         { method: "POST", credentials: "include", body: form }
       );
       const result = await res.json();
@@ -97,7 +97,7 @@ const Purchase = () => {
   const getEnrolls = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/enrollments`,
+        `${process.env.NEXT_PUBLIC_API_URL}api/enrollments`,
         { method: "GET", credentials: "include" }
       );
       const result = await res.json();

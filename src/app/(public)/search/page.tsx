@@ -24,7 +24,7 @@ const SearchContent = () => {
   const fetchFilteredCourses = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/courses?search=${search}&category=${category}`,
+        `${process.env.NEXT_PUBLIC_API_URL}api/courses?search=${search}&category=${category}`,
         { method: "GET" }
       );
       const result = await res.json();
@@ -37,7 +37,7 @@ const SearchContent = () => {
   const getCategory = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/category`,
+        `${process.env.NEXT_PUBLIC_API_URL}api/category`,
         { method: "GET" }
       );
       const result = await res.json();
@@ -50,7 +50,7 @@ const SearchContent = () => {
   const getEnrolls = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/enrollments`,
+        `${process.env.NEXT_PUBLIC_API_URL}api/enrollments`,
         {
           method: "GET",
           credentials: "include",

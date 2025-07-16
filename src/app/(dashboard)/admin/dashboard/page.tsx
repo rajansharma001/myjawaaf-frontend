@@ -29,13 +29,10 @@ const AdminDashboard = () => {
 
   const getEnrolls = async () => {
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/enrolls`,
-        {
-          method: "GET",
-          credentials: "include",
-        }
-      );
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/enrolls`, {
+        method: "GET",
+        credentials: "include",
+      });
       const result = await res.json();
       setEnrolls(result.getEnrolls);
     } catch (error) {
@@ -45,7 +42,7 @@ const AdminDashboard = () => {
 
   const getCourse = async () => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/course`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/course`, {
         method: "GET",
       });
 
@@ -58,12 +55,9 @@ const AdminDashboard = () => {
 
   const getLessons = async () => {
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/lessons`,
-        {
-          method: "GET",
-        }
-      );
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/lessons`, {
+        method: "GET",
+      });
 
       const result = await res.json();
       setLessons(result.getLessons);
@@ -74,7 +68,7 @@ const AdminDashboard = () => {
 
   const getUsers = async () => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/users`, {
         method: "GET",
       });
 

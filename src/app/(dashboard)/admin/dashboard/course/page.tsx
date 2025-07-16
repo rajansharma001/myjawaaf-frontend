@@ -33,7 +33,7 @@ const Course = () => {
   });
   const getCat = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/category/get-category`,
+      `${process.env.NEXT_PUBLIC_API_URL}api/auth/category/get-category`,
       {
         method: "GET",
         credentials: "include",
@@ -83,7 +83,7 @@ const Course = () => {
       setLoading(true);
 
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/course/create-course`,
+        `${process.env.NEXT_PUBLIC_API_URL}api/auth/course/create-course`,
         {
           method: "POST",
           credentials: "include",

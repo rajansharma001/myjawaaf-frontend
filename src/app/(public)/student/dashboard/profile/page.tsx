@@ -50,7 +50,7 @@ const Profile = () => {
     try {
       setLoading(true);
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/update-profile-img`,
+        `${process.env.NEXT_PUBLIC_API_URL}api/auth/update-profile-img`,
         {
           method: "PATCH",
           credentials: "include",
@@ -77,7 +77,7 @@ const Profile = () => {
     try {
       setLoading(true);
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/update-profile`,
+        `${process.env.NEXT_PUBLIC_API_URL}api/auth/update-profile`,
         { method: "PATCH", credentials: "include", body: form }
       );
       const result = await res.json();
@@ -97,7 +97,7 @@ const Profile = () => {
 
   const getUser = async () => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/userid`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/userid`, {
         method: "GET",
         credentials: "include",
       });

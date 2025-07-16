@@ -20,7 +20,7 @@ const Enrolled = () => {
   const getEnrolls = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/enrollments`,
+        `${process.env.NEXT_PUBLIC_API_URL}api/enrollments`,
         {
           method: "GET",
           credentials: "include",
@@ -34,7 +34,7 @@ const Enrolled = () => {
   };
   const getCourse = async () => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/course`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/course`, {
         method: "GET",
       });
 
@@ -48,7 +48,7 @@ const Enrolled = () => {
   const getCategory = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/category`,
+        `${process.env.NEXT_PUBLIC_API_URL}api/category`,
         {
           method: "GET",
         }
