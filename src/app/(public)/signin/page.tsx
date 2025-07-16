@@ -6,6 +6,7 @@ import FormButton from "../../../../components/FormButton";
 import { redirect } from "next/navigation";
 import { useAuth } from "../../../../context/authContext";
 import { useProtectedRoute } from "../../../../context/useProtected";
+import { input } from "../../../../components/dashboard/styles/inputField";
 interface FormProps {
   password: string;
   email: string;
@@ -160,6 +161,26 @@ const Signin = () => {
                       </div>
                     </div>
                   </form>
+                  <div className="w-full flex flex-col lg:flex-row md:flex-row justify-between text-[12px] mt-10">
+                    <div className={`w-full md:w-[50%] lg:w-[50%]`}>
+                      <h1 className="font-bold text-[13px]">For Admin:</h1>
+                      <h1>
+                        <strong>Email</strong>: admin@gmail.com
+                      </h1>
+                      <h1>
+                        <strong>Password</strong>: admin@123
+                      </h1>
+                    </div>
+                    <div className="w-full md:w-[50%] lg:w-[50]">
+                      <h1 className="font-bold text-[13px]">For Student:</h1>
+                      <h1>
+                        <strong>Email</strong>: student@gmail.com
+                      </h1>
+                      <h1>
+                        <strong>Password</strong>: student@123
+                      </h1>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
