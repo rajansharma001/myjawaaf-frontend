@@ -157,18 +157,17 @@ const Purchase = () => {
               )}
             </div>
             <div className="w-full border-b-gray-300 border-b-2"></div>
-
             <div className="w-full flex flex-col">
-              <Image
-                src={`${process.env.NEXT_PUBLIC_API_URL}/${course?.thumbnail}`}
-                alt={`${course?.title}`}
-                width={400}
-                height={400}
+              <img
+                src={course?.thumbnail}
+                alt={course?.title}
                 className="w-full"
+                height={720}
+                width={400}
               />
+
               <div className="w-full px-6">{course?.title}</div>
             </div>
-
             <div className="w-full border-b-gray-300 border-b-2"></div>
             <div className="w-full flex justify-center items-center">
               <div className="w-full p-4 flex flex-col gap-3">

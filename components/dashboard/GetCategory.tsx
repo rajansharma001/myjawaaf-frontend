@@ -3,6 +3,7 @@ import { button, input, lable } from "./styles/inputField";
 import { FiDelete } from "react-icons/fi";
 import { FaEdit } from "react-icons/fa";
 import UpdateForm from "./UpdateForm";
+import DeletePopUpMsg from "./DeletePopUpMsg";
 
 interface Props {
   _id: string;
@@ -14,6 +15,7 @@ const GetCategory = () => {
   const [category, setCategory] = useState<Props[]>([]);
   const [catId, setCatId] = useState("");
   const [popUpdateOpen, setPopUpdateOpen] = useState(false);
+  const [deletePop, setDeletePop] = useState(false);
   const getCategory = async () => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/api/auth/category/get-category`,
@@ -35,6 +37,7 @@ const GetCategory = () => {
       }
     );
     const result = await res.json();
+    setDeletePop(false);
     getCategory();
   };
 
@@ -45,8 +48,17 @@ const GetCategory = () => {
   const handlePop = () => {
     setPopUpdateOpen(!popUpdateOpen);
   };
+  const deletePopFunc = () => {
+    setDeletePop(false);
+  };
   return (
     <div className="w-full flex flex-col items-center justify-center py-6 px-2">
+      {deletePop && (
+        <DeletePopUpMsg
+          cancelState={deletePopFunc}
+          deleteFunc={() => deleteCategory(catId)}
+        />
+      )}
       <div className="w-full max-w-5xl border border-gray-300 rounded overflow-hidden shadow-sm text-[13px] overflow-x-auto">
         <div className="min-w-[700px]">
           {/* Table Header */}
@@ -81,7 +93,8 @@ const GetCategory = () => {
                   <div className="w-2/12 p-2 text-gray-700 flex gap-3 justify-center items-center">
                     <button
                       onClick={() => {
-                        deleteCategory(cat._id);
+                        setCatId(cat._id);
+                        setDeletePop(true);
                       }}
                       className={`${button}`}
                     >

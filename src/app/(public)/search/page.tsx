@@ -67,7 +67,7 @@ const SearchContent = () => {
     fetchFilteredCourses();
     getCategory();
     getEnrolls();
-  }, []);
+  }, [search, courses]);
 
   return (
     <div className="w-full py-16 bg-gray-100 flex flex-col items-center justify-center">
@@ -83,7 +83,7 @@ const SearchContent = () => {
               className="bg-white shadow-md flex flex-col gap-2 hover:shadow-primary-300 transition-transform hover:-translate-y-2"
             >
               <Image
-                src={`${process.env.NEXT_PUBLIC_API_URL}/${course.thumbnail}`}
+                src={`${course?.thumbnail}`}
                 width={720}
                 height={420}
                 alt="courseImg"

@@ -11,6 +11,7 @@ import {
 } from "../../../../../../components/dashboard/styles/inputField";
 import { useAuth } from "../../../../../../context/authContext";
 import { CiSettings } from "react-icons/ci";
+import PopUpMsg from "../../../../../../components/dashboard/DeletePopUpMsg";
 
 const Course = () => {
   useProtectedRoute(["admin"]);
@@ -121,6 +122,8 @@ const Course = () => {
   setTimeout(() => {
     setHasMsg(false);
   }, 3000);
+
+  console.log(formData);
   return (
     <div className=" w-full lg:p-6 md:p-4 p-2">
       {hasMsg && (
@@ -180,6 +183,7 @@ const Course = () => {
                 type="file"
                 onChange={handleChange}
                 name="thumbnail"
+                accept=".png,.jpg,.jpeg,image/png,image/jpeg"
               />
             </div>
           </div>

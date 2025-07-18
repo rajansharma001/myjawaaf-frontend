@@ -68,10 +68,11 @@ export interface enrollProps {
   userId: string;
   courseId: string;
   isFree: boolean;
-  amountPaid: string;
+  amountPaid?: string;
   receipt: string;
-  paymentId: string;
+  paymentId?: string;
   hasAccess: boolean;
+  price: string;
 }
 
 export interface CategoryProps {

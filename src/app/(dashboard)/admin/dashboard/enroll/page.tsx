@@ -15,6 +15,7 @@ import { BiEdit } from "react-icons/bi";
 import { FiDelete } from "react-icons/fi";
 import Image from "next/image";
 import UpdateEnroll from "../../../../../../components/dashboard/UpdateEnroll";
+import DeletePopUpMsg from "../../../../../../components/dashboard/DeletePopUpMsg";
 
 const Enroll = () => {
   useProtectedRoute(["admin"]);
@@ -34,6 +35,7 @@ const Enroll = () => {
   const [hasMsg, setHasMsg] = useState(false);
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
+  const [deletePop, setDeletePop] = useState(false);
 
   const [formData, setFormData] = useState({
     userId: "",
@@ -118,7 +120,7 @@ const Enroll = () => {
         }
       );
       const result = await res.json();
-
+      setIsEnrollOpen(false);
       if (!res.ok) {
         setLoading(false);
         setHasMsg(true);
@@ -160,7 +162,7 @@ const Enroll = () => {
         }
       );
       const result = await res.json();
-      console.log("delete msg: ", result.msg);
+      setDeletePop(false);
       if (!res.ok) {
         setHasMsg(true);
         setMsg(result.msg);
@@ -186,8 +188,18 @@ const Enroll = () => {
   setTimeout(() => {
     setHasMsg(false);
   }, 3000);
+
+  const removePop = () => {
+    setDeletePop(false);
+  };
   return (
     <div className="w-full relative">
+      {deletePop && (
+        <DeletePopUpMsg
+          cancelState={removePop}
+          deleteFunc={() => handleDelete(enrollId)}
+        />
+      )}
       <div className="w-full flex flex-col p-4 sm:p-6">
         {hasMsg && (
           <div className="w-full flex flex-col justify-center items-center bg-white p-4 sm:p-6 border border-gray-300 mb-5">
@@ -356,7 +368,7 @@ const Enroll = () => {
                   <td className="border border-gray-300 p-2">
                     <div className="flex justify-center">
                       <Image
-                        src={`${process.env.NEXT_PUBLIC_API_URL}/${enroll.receipt}`}
+                        src={`${enroll.receipt}`}
                         alt={enroll.courseId}
                         width={80}
                         height={80}
@@ -386,7 +398,10 @@ const Enroll = () => {
                       </button>
                       <button
                         className={`${button}`}
-                        onClick={() => handleDelete(enroll._id as string)}
+                        onClick={() => {
+                          setEnrollId(enroll._id as string);
+                          setDeletePop(true);
+                        }}
                       >
                         <FiDelete />
                       </button>
@@ -401,7 +416,7 @@ const Enroll = () => {
 
       {/* Update enroll popup */}
       {updateEnrollment && (
-        <div className="absolute top-0 inset-0 shadow-2xl backdrop-blur-3xl z-50">
+        <div className="absolute top-0 inset-0 shadow-2xl h-150 backdrop-blur-3xl z-50">
           <UpdateEnroll
             handleUpdateStateChange={handleUpdateStateChange}
             enrollId={enrollId}

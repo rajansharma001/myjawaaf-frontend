@@ -94,7 +94,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="w-full">
-      <div className="w-full flex justify-between gap-3">
+      <div className="w-full flex flex-wrap lg:flex-nowrap md:flex-wrap justify-between gap-3">
         <Link
           className="w-full p-6 shadow-2xl text-[12px] bg-primary-500 text-gray-100 font-semibold shadow-gray rounded-lg flex items-center gap-3 hover:-translate-y-2 transition-all duration-300 ease-in-out hover:bg-orange-400"
           href="/admin/dashboard/enroll"
@@ -215,7 +215,7 @@ const AdminDashboard = () => {
                     <td className="border border-gray-300 p-2">
                       <div className="flex justify-center">
                         <Image
-                          src={`${process.env.NEXT_PUBLIC_API_URL}/${enroll.receipt}`}
+                          src={`${enroll.receipt}`}
                           alt={enroll.courseId}
                           width={80}
                           height={80}

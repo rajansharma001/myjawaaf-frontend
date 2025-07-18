@@ -11,6 +11,7 @@ import {
   LessonProps,
 } from "../../../../../../components/dashboard/styles/inputField";
 import UpdateLesson from "../../../../../../components/dashboard/UpdateLesson";
+import DeletePopUpMsg from "../../../../../../components/dashboard/DeletePopUpMsg";
 
 const Lessons = () => {
   useProtectedRoute(["admin"]);
@@ -20,7 +21,8 @@ const Lessons = () => {
   const [msg, setMsg] = useState("");
   const [lesson, setLesson] = useState<LessonProps[] | null>([]);
   const [updatePop, setUpdatePop] = useState(false);
-  const [lessonId, setlessonId] = useState("");
+  const [deletePop, setDeletePop] = useState(false);
+  const [lessonId, setLessonId] = useState("");
   const [courseId, setCourseId] = useState("");
   const [course, setCourse] = useState<CourseProps[] | null>([]);
 
@@ -67,6 +69,7 @@ const Lessons = () => {
         }
       );
       const result = await res.json();
+      setDeletePop(false);
       if (!res.ok) {
         setLoading(false);
         setHasMsg(true);
@@ -89,8 +92,18 @@ const Lessons = () => {
     getLesson();
     getCourse();
   }, []);
+
+  const popRemove = () => {
+    setDeletePop(false);
+  };
   return (
     <div className="w-full relative">
+      {deletePop && (
+        <DeletePopUpMsg
+          cancelState={popRemove}
+          deleteFunc={() => handleDelete(lessonId)}
+        />
+      )}
       <div className="w-full px-2">
         {hasMsg && (
           <div className="w-full flex flex-col justify-center items-center bg-white p-6 border border-gray-300 mb-5">
@@ -154,7 +167,7 @@ const Lessons = () => {
                     <video
                       className="h-15 w-[80%]"
                       controls
-                      src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${lesson.videoUrl}`}
+                      src={`${lesson.videoUrl}`}
                     />
                   </div>
                   <div className="w-50 h-16 flex items-center justify-start p-2 border-r border-gray-100">
@@ -174,14 +187,18 @@ const Lessons = () => {
                     <button
                       onClick={() => {
                         setUpdatePop(true);
-                        setlessonId(lesson._id as string);
+                        setLessonId(lesson._id as string);
                       }}
                       className={`${button}`}
                     >
                       <BiEdit />
                     </button>
                     <button
-                      onClick={() => handleDelete(lesson._id as string)}
+                      onClick={() => {
+                        // handleDelete(lesson._id as string);
+                        setLessonId(lesson._id as string);
+                        setDeletePop(true);
+                      }}
                       className={`${button}`}
                     >
                       <FiDelete />

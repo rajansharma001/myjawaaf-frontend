@@ -90,7 +90,7 @@ const Enrolled = () => {
               className="bg-white w-full shadow-2xl flex flex-col gap-2 hover:shadow-sm hover:shadow-primary-500 transition-all hover:-translate-y-2 ease-in-out duration-300"
             >
               <Image
-                src={`${process.env.NEXT_PUBLIC_API_URL}/${course.thumbnail}`}
+                src={`${course?.thumbnail}`}
                 width={720}
                 height={420}
                 alt="courseImg"

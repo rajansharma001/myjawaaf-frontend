@@ -80,6 +80,7 @@ const Profile = () => {
         { method: "PATCH", credentials: "include", body: form }
       );
       const result = await res.json();
+      getUser();
       if (!res.ok) {
         setHasMsg(true);
         setMsg(result.msg);
@@ -121,7 +122,6 @@ const Profile = () => {
   setTimeout(() => {
     setHasMsg(false);
   }, 3000);
-  console.log("userdetails", formData);
   return (
     <div className="w-full">
       <div className="w-full lg:p-6 md:p-4 p-2">
@@ -136,15 +136,16 @@ const Profile = () => {
           Profile
         </h1>
         <div className="w-full flex  gap-2 justify-start items-center">
-          <Image
-            alt=""
-            src={`${process.env.NEXT_PUBLIC_API_URL}/${
-              userDetails && userDetails?.profileImg
-            }`}
-            height={200}
-            width={200}
-            className="object-cover w-22 h-22 rounded-full border-gray-200 border-2 "
-          />
+          {/* <h1>{userDetails?.profileImg}</h1> */}
+          {userDetails?.profileImg && (
+            <Image
+              src={`${userDetails?.profileImg}`}
+              alt={userDetails?.fullname as string}
+              height={200}
+              width={200}
+              className="object-cover w-22 h-22 rounded-full border-gray-200 border-2 "
+            />
+          )}
           {loading ? (
             <div className="flex flex-col items-center justify-center">
               <CiSettings className="animate-spin" />

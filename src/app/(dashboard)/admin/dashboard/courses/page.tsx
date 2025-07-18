@@ -12,6 +12,7 @@ import { BiEdit } from "react-icons/bi";
 import { FiDelete } from "react-icons/fi";
 import { CiSettings } from "react-icons/ci";
 import UpdateCourse from "../../../../../../components/dashboard/UpdateCourse";
+import PopUpMsg from "../../../../../../components/dashboard/DeletePopUpMsg";
 
 interface CatProps {
   title: string;
@@ -30,6 +31,8 @@ const AllCourses = () => {
   const [updatePop, setUpdatePop] = useState(false);
   const [courseId, setCourseId] = useState("");
   const [lesson, setLesson] = useState<LessonProps[]>([]);
+  const [deletePop, setDeletePop] = useState(false);
+  const [deleteFuncId, setDeleteFuncId] = useState("");
 
   const getCourse = async () => {
     const res = await fetch(
@@ -87,6 +90,7 @@ const AllCourses = () => {
         setMsg("Course deleted successfully.");
         getCourse();
       }
+      setDeletePop(false);
     } catch (error) {
       console.log(error);
     }
@@ -105,8 +109,19 @@ const AllCourses = () => {
     updateTable();
   }, []);
 
+  const deletePopRemove = () => {
+    setDeletePop(false);
+  };
+
   return (
     <div className="w-full relative">
+      {deletePop && (
+        <PopUpMsg
+          deleteFunc={() => handleDelete(deleteFuncId)}
+          cancelState={deletePopRemove}
+        />
+      )}
+
       <div className="w-full">
         {hasMsg && (
           <div className=" w-full flex flex-col justify-center items-center bg-white p-6 border-1 border-gray-300 mb-5">
@@ -122,7 +137,7 @@ const AllCourses = () => {
           </div>
         )}
         <div className="w-full overflow-x-auto">
-          <div className="min-w-[1200px] border border-gray-300 rounded-md overflow-scroll">
+          <div className="min-w-[1200px] border border-gray-300 rounded-md overflow-scroll h-150">
             <div className="flex w-full bg-gray-100 font-semibold text-[12px] text-gray-700">
               <div className="w-1/12 h-8 flex items-center justify-center border-r border-gray-300">
                 lesson
@@ -180,13 +195,13 @@ const AllCourses = () => {
                   <div className="w-2/12 h-16 flex items-center justify-center border-r border-gray-100 ">
                     {course.title}
                   </div>
-
                   <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_API_URL}/${course.thumbnail}`}
+                      src={`${course?.thumbnail}`}
                       alt="thumbnail"
                       height={50}
                       width={50}
+                      className=" object-cover h-16 w-full p-2"
                     />
                   </div>
                   <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
@@ -222,7 +237,10 @@ const AllCourses = () => {
                       <BiEdit />
                     </button>
                     <button
-                      onClick={() => handleDelete(course._id)}
+                      onClick={() => {
+                        setDeleteFuncId(course?._id as string);
+                        setDeletePop(true);
+                      }}
                       className={`${button}`}
                     >
                       <FiDelete />
@@ -305,7 +323,7 @@ const AllCourses = () => {
                       <video
                         className="h-15 w-[80%]"
                         controls
-                        src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${lesson.videoUrl}`}
+                        src={`${lesson.videoUrl}`}
                       />
                     </div>
                     <div className="w-3/12 h-16 flex items-center justify-start p-2 border-r border-gray-100">

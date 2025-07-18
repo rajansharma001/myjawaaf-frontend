@@ -31,6 +31,7 @@ const UpdateEnroll = ({
   const [hasMsg, setHasMsg] = useState(false);
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
+  const [enrollReceipt, setEnrollReceipt] = useState("");
 
   const [formData, setFormData] = useState({
     userId: "",
@@ -42,16 +43,23 @@ const UpdateEnroll = ({
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | any>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
-    const { type, name, value, checked, files } = e.target;
+    const target = e.target as HTMLInputElement;
+    const { name, type, value, checked, files } = target;
 
     setFormData((prev) => {
       if (type === "checkbox") {
         return { ...prev, [name]: checked };
-      } else if (type === "file" && files) {
+      }
+
+      if (type === "file" && files && files.length > 0) {
         return { ...prev, [name]: files[0] };
-      } else return { ...prev, [name]: value };
+      }
+
+      return { ...prev, [name]: value };
     });
   };
 
@@ -87,6 +95,7 @@ const UpdateEnroll = ({
       }
     );
     const result = await res.json();
+    setEnrollReceipt(result.getEnrolled.receipt || "");
     setFormData({
       userId: result.getEnrolled.userId || "",
       courseId: result.getEnrolled.courseId || "",
@@ -270,12 +279,6 @@ const UpdateEnroll = ({
                 />
               </div>
               <div className="flex flex-col w-full">
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_API_URL}/${formData.receipt}`}
-                  alt=""
-                  width={150}
-                  height={150}
-                />
                 <label htmlFor="receipt" className={`${lable}`}>
                   Upload Receipt
                 </label>

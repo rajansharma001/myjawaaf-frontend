@@ -22,7 +22,7 @@ const Lesson = () => {
   const [formData, setFormData] = useState<LessonProps>({
     title: "",
     slug: "",
-    videoUrl: "undefined",
+    videoUrl: "",
     duration: "",
     isPreview: false,
     description: "",
@@ -77,7 +77,6 @@ const Lesson = () => {
         `${process.env.NEXT_PUBLIC_API_URL}/api/auth/lesson/create-lesson`,
         {
           method: "POST",
-
           credentials: "include",
           body: form,
         }
@@ -113,6 +112,7 @@ const Lesson = () => {
   useEffect(() => {
     getCourse();
   }, []);
+  console.log(formData);
   return (
     <div className="w-full p-6 flex flex-col">
       <div className="w-full">
