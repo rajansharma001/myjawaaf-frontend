@@ -222,9 +222,7 @@ const AdminDashboard = () => {
                           className="cursor-pointer h-12 object-cover"
                           onClick={() => {
                             setPopReceipt(true);
-                            setReceiptUrl(
-                              `${process.env.NEXT_PUBLIC_API_URL}/${enroll.receipt}`
-                            );
+                            setReceiptUrl(`${enroll.receipt}`);
                           }}
                         />
                       </div>

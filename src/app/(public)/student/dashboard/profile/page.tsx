@@ -8,7 +8,6 @@ import {
 } from "../../../../../../components/dashboard/styles/inputField";
 import FormButton from "../../../../../../components/FormButton";
 import { useProtectedRoute } from "../../../../../../context/useProtected";
-import { useAuth } from "../../../../../../context/authContext";
 import { CiSettings } from "react-icons/ci";
 
 const Profile = () => {
@@ -122,7 +121,6 @@ const Profile = () => {
   setTimeout(() => {
     setHasMsg(false);
   }, 3000);
-  console.log("userdetails", formData);
   return (
     <div className="w-full">
       <div className="w-full lg:p-6 md:p-4 p-2">
@@ -138,8 +136,8 @@ const Profile = () => {
         </h1>
         <div className="w-full flex  gap-2 justify-start items-center">
           <Image
-            alt=""
-            src={`${userDetails && userDetails?.profileImg}`}
+            src={`${userDetails?.profileImg}`}
+            alt={`${userDetails?.fullname}`}
             height={200}
             width={200}
             className="object-cover w-22 h-22 rounded-full border-gray-200 border-2 "

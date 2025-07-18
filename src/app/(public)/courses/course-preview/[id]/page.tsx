@@ -115,13 +115,21 @@ const PreviewCourse = () => {
           </p>
           <div className="w-full flex justify-between mt-5">
             <div className="flex justify-center items-center gap-2">
-              <Image
-                alt="instructor_img"
-                src="/defaultUser.jpeg"
-                width={50}
-                height={50}
-                className="rounded-full"
-              />
+              {users &&
+                course?.createdBy &&
+                users.find((u) => u._id === course.createdBy)?.profileImg && (
+                  <Image
+                    alt="instructor_img"
+                    src={
+                      users.find((u) => u._id === course.createdBy)
+                        ?.profileImg as string
+                    }
+                    width={50}
+                    height={50}
+                    className="rounded-full"
+                  />
+                )}
+
               <div className="flex flex-col">
                 <span className="text-[13px] text-gray-500 capitalize">
                   Created By
@@ -141,14 +149,10 @@ const PreviewCourse = () => {
               <video
                 controls
                 className="w-full"
-                src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${previewVideoUrl}`}
+                src={`${previewVideoUrl}`}
               ></video>
             ) : (
-              <video
-                controls
-                className="w-full"
-                src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${previewUrl}`}
-              ></video>
+              <video controls className="w-full" src={`${previewUrl}`}></video>
             )}
           </div>
 

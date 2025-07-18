@@ -40,13 +40,15 @@ const StudentDashboardLayout = ({
       <div className="w-full h-30 bg-primary-500"></div>
       <div className="W-full lg:w-[80%] md:w-[90%] flex flex-col gap-10">
         <div className=" -mt-8 flex justify-start items-center gap-2">
-          <Image
-            src={`${process.env.NEXT_PUBLIC_API_URL}/${userDetails?.profileImg}`}
-            alt=""
-            height={200}
-            width={200}
-            className="rounded-full w-25 h-25 object-cover border-gray-200 border-2 "
-          />
+          {userDetails?.profileImg && (
+            <Image
+              src={`${userDetails?.profileImg}`}
+              alt=""
+              height={200}
+              width={200}
+              className="rounded-full w-25 h-25 object-cover border-gray-200 border-2 "
+            />
+          )}
           <h1 className="text-[18px] font-semibold capitalize">
             {user && user.fullname}
           </h1>

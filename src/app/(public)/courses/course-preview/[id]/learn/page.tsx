@@ -64,11 +64,7 @@ const Learn = () => {
       <div className="w-full lg:w-[80%] md:w-full md:px-6 flex flex-col justify-center">
         <div className="w-full flex flex-col lg:flex-row md:flex-row py-6">
           <div className="w-full lg:w-8/12 md:w-full border-2 border-gray-200 shadow-2xl">
-            <video
-              controls
-              className="w-full"
-              src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${previewUrl}`}
-            ></video>
+            <video controls className="w-full" src={`${previewUrl}`}></video>
 
             <div className="w-full flex flex-col p-2 gap-2">
               <h1 className="text-[12px] lg:text-[16px] md:text-[14px] font-semibold capitalize text-gray-500">
