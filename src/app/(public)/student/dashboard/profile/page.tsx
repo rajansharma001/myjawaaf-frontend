@@ -139,9 +139,7 @@ const Profile = () => {
         <div className="w-full flex  gap-2 justify-start items-center">
           <Image
             alt=""
-            src={`${process.env.NEXT_PUBLIC_API_URL}/${
-              userDetails && userDetails?.profileImg
-            }`}
+            src={`${userDetails && userDetails?.profileImg}`}
             height={200}
             width={200}
             className="object-cover w-22 h-22 rounded-full border-gray-200 border-2 "

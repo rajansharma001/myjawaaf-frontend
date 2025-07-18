@@ -114,7 +114,7 @@ const Header = () => {
               Hi, <strong>{userDetails?.fullname}</strong>
             </h1>
             <Image
-              src={`${process.env.NEXT_PUBLIC_API_URL}/${userDetails?.profileImg}`}
+              src={`${userDetails?.profileImg}`}
               alt="userImg"
               width={40}
               height={40}
