@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { PiBell } from "react-icons/pi";
 import { useAuth } from "../../context/authContext";
 import { UserProps } from "./styles/inputField";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const Header = () => {
   const { user, logoutUser } = useAuth();
