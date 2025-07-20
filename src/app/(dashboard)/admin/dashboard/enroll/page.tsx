@@ -324,7 +324,7 @@ const Enroll = () => {
             close
           </button>
           <Image
-            src={receiptUrl}
+            src={receiptUrl || "/signup.jpg"}
             height={260}
             width={260}
             alt="receipt"
@@ -368,7 +368,7 @@ const Enroll = () => {
                   <td className="border border-gray-300 p-2">
                     <div className="flex justify-center">
                       <Image
-                        src={`${enroll.receipt}`}
+                        src={`${enroll.receipt || "/signup.jpg"}`}
                         alt={enroll.courseId}
                         width={80}
                         height={80}

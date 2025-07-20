@@ -159,14 +159,14 @@ const Purchase = () => {
             <div className="w-full border-b-gray-300 border-b-2"></div>
             <div className="w-full flex flex-col">
               <img
-                src={course?.thumbnail}
+                src={course?.thumbnail || "/signup.jpg"}
                 alt={course?.title}
-                className="w-full"
+                className="w-full object-cover h-60"
                 height={720}
                 width={400}
               />
 
-              <div className="w-full px-6">{course?.title}</div>
+              <div className="w-full px-6 mt-2">{course?.title}</div>
             </div>
             <div className="w-full border-b-gray-300 border-b-2"></div>
             <div className="w-full flex justify-center items-center">
@@ -294,14 +294,19 @@ const Purchase = () => {
                     onSubmit={handleSubmit}
                     className=" flex flex-col gap-3"
                   >
-                    <input
-                      type="file"
-                      name="receipt"
-                      accept="image/*"
-                      required
-                      onChange={handleChange}
-                      className={`${input}`}
-                    />
+                    {!course?.isFree ? (
+                      <input
+                        type="file"
+                        name="receipt"
+                        accept="image/*"
+                        required
+                        onChange={handleChange}
+                        className={`${input}`}
+                      />
+                    ) : (
+                      "Free"
+                    )}
+
                     <input
                       type="text"
                       name="courseId"

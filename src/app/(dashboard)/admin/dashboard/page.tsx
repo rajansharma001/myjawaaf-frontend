@@ -215,7 +215,7 @@ const AdminDashboard = () => {
                     <td className="border border-gray-300 p-2">
                       <div className="flex justify-center">
                         <Image
-                          src={`${enroll.receipt}`}
+                          src={`${enroll.receipt || "/signup.jpg"}`}
                           alt={enroll.courseId}
                           width={80}
                           height={80}

@@ -197,7 +197,9 @@ const AllCourses = () => {
                   </div>
                   <div className="w-1/12 h-16 flex items-center justify-center border-r border-gray-100">
                     <Image
-                      src={`${course?.thumbnail}`}
+                      src={`${
+                        course?.thumbnail ? course?.thumbnail : "/signin.webp"
+                      }`}
                       alt="thumbnail"
                       height={50}
                       width={50}

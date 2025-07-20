@@ -113,16 +113,18 @@ const Header = () => {
             <h1 className="text-[13px] font-semibold text-gray-500 capitalize">
               Hi, <strong>{userDetails?.fullname}</strong>
             </h1>
-            {userDetails?.profileImg && (
-              <Image
-                src={`${userDetails.profileImg}`}
-                alt="userImg"
-                width={40}
-                height={40}
-                className="rounded-full object-cover border border-gray-400 cursor-pointer w-10 h-10"
-                onClick={() => setProfileMenu(!profileMenu)}
-              />
-            )}
+            <Image
+              src={`${
+                userDetails?.profileImg
+                  ? userDetails.profileImg
+                  : "/defaultuser.jpeg"
+              }`}
+              alt="userImg"
+              width={40}
+              height={40}
+              className="rounded-full object-cover border border-gray-400 cursor-pointer w-10 h-10"
+              onClick={() => setProfileMenu(!profileMenu)}
+            />
             {profileMenu && (
               <div className="absolute z-10 w-40 top-full left-1/2 -translate-x-1/2 mt-2 p-4 rounded-xl bg-gray-800 flex flex-col text-gray-200 text-[13px] transition-all duration-300 ease-in shadow-lg">
                 <div>{user?.email}</div>

@@ -14,14 +14,18 @@ const Hero = () => {
           blanditiis inventore sapiente quas tempora! Ab!
         </p>
         <div className="w-full flex ">
-          <LinkButton link={"/signup" as const} title={"Create Account"} />
+          <LinkButton
+            link={"/signup" as const}
+            title={"Create Account"}
+            style="w-fit"
+          />
         </div>
       </div>
-      <div className="w-[50%] hidden lg:flex md:flex justify-center ">
+      <div className="w-[50%]  hidden lg:flex md:flex justify-center ">
         <Image
           src="/heroImg.jpg"
           alt="heroImage"
-          className=" -skew-x-6 overflow-hidden"
+          className=" -skew-x-6 overflow-hidden -mr-25"
           width={800}
           height={100}
         />

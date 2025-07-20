@@ -5,13 +5,14 @@ import { URL, Url } from "url";
 interface Props {
   title: string;
   link: string;
+  style?: string;
 }
-const LinkButton = ({ title, link }: Props) => {
+const LinkButton = ({ title, link, style }: Props) => {
   return (
     <div className="w-full">
       <Link
         href={link}
-        className="py-2 px-3 w-full  bg-primary-500 flex items-center justify-center text-[12px] hover:bg-primary-300 hover:text-primary-500 cursor-pointer text-white capitalize font-semibold transition-all transform ease-in duration-300"
+        className={`${style} py-2 px-3  bg-primary-500 flex items-center justify-center text-[12px] hover:bg-primary-300 hover:text-primary-500 cursor-pointer text-white capitalize font-semibold transition-all transform ease-in duration-300`}
       >
         {title}
       </Link>

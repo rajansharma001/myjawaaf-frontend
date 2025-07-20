@@ -38,16 +38,18 @@ const Header = () => {
 
       <div className="w-6/12 lg:gap-6 md:gap-4 gap-2 flex items-center justify-end">
         <div className="relative flex flex-col gap-6 ">
-          {userDetails?.profileImg && (
-            <Image
-              src={`${userDetails?.profileImg}`}
-              alt="userImg"
-              width={40}
-              height={40}
-              className="rounded-full object-cover border border-gray-400 cursor-pointer w-10 h-10"
-              onClick={() => setProfileMenu(!profileMenu)}
-            />
-          )}
+          <Image
+            src={`${
+              userDetails?.profileImg
+                ? userDetails?.profileImg
+                : "/defaultuser.jpeg"
+            }`}
+            alt="userImg"
+            width={40}
+            height={40}
+            className="rounded-full object-cover border border-gray-400 cursor-pointer w-10 h-10"
+            onClick={() => setProfileMenu(!profileMenu)}
+          />
           {/* profile click menu */}
 
           {profileMenu && (

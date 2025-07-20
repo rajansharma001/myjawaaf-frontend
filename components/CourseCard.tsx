@@ -63,15 +63,18 @@ const CourseCard = () => {
   }, []);
   return (
     <div className="w-full py-16 gap-4 bg-gray-100 flex flex-col items-center justify-center">
+      <h1 className="text-2xl py-3 text-heading capitalize font-semibold">
+        Browse top Courses
+      </h1>
       <div className="w-[80%] grid  grid-cols-1 md:grid-cols-2  lg:grid-cols-4 gap-8">
-        {courses &&
+        {courses.length > 0 ? (
           courses.map((course) => (
             <div
               key={course._id}
               className="bg-white shadow-2xl flex flex-col gap-2 hover:shadow-sm hover:shadow-primary-500 transition-all hover:-translate-y-2 ease-in-out duration-300"
             >
               <Image
-                src={`${course.thumbnail}`}
+                src={`${course.thumbnail || "/signup.jpg"}`}
                 width={720}
                 height={420}
                 alt="courseImg"
@@ -128,7 +131,14 @@ const CourseCard = () => {
                 )}
               </div>
             </div>
-          ))}
+          ))
+        ) : (
+          <div className="w-full flex justify-center items-center">
+            <h1 className="text-[13px] w-full text-center text-gray-600 font-bold">
+              coruse not found
+            </h1>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -38,8 +38,8 @@ const CourseCategoryCard = () => {
           Browse top category
         </h1>
       </div>
-      <div className="lg:w-[80%] p-2 md:w-[80%] w-full flex justify-center items-center gap-2">
-        {cats &&
+      <div className="w-[80%] grid  grid-cols-1 md:grid-cols-2  lg:grid-cols-4 gap-8">
+        {cats.length > 0 ? (
           cats.map((cat) => (
             <div
               key={cat._id}
@@ -56,7 +56,14 @@ const CourseCategoryCard = () => {
                 </div>
               </div>
             </div>
-          ))}
+          ))
+        ) : (
+          <div className="w-full flex justify-center items-center">
+            <h1 className="text-[13px] text-center w-full text-gray-600 font-bold">
+              Category not found
+            </h1>
+          </div>
+        )}
       </div>
     </div>
   );
