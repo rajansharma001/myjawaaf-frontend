@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { PiBell } from "react-icons/pi";
 import { useAuth } from "../../context/authContext";
 import { UserProps } from "./styles/inputField";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const { user, logoutUser } = useAuth();
@@ -55,7 +56,12 @@ const Header = () => {
           {profileMenu && (
             <div className="absolute inset-0 -ml-40 h-30 z-10 w-[13vw] items-start justify-between p-4 rounded-xl bg-gray-800 flex flex-col text-gray-200 text-[13px]  transition-all transform translate-y-13 duration-300 ease-in">
               <div>{user?.email}</div>
-              <div>Profile</div>
+              <Link href="/admin/dashboard" className="cursor-pointer">
+                Dashboard
+              </Link>
+              <Link href="/admin/dashboard/profile" className="cursor-pointer">
+                Profile
+              </Link>
               <button className="cursor-pointer" onClick={handleLogout}>
                 Logout
               </button>
