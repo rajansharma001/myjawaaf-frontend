@@ -15,8 +15,10 @@ export default function PublicLayout({
     <AuthProvider>
       <Header />
       {children}
-      <Footer />
-      <FooterCredit />
+      <div className=" absolute  w-full bottom-0">
+        <Footer />
+        <FooterCredit />
+      </div>
     </AuthProvider>
   );
 }
