@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { CategoryProps, CourseProps } from "./dashboard/styles/inputField";
+import Link from "next/link";
 
 const CourseCategoryCard = () => {
   const [cats, setCats] = useState<CategoryProps[]>([]);
@@ -41,21 +42,21 @@ const CourseCategoryCard = () => {
       <div className="w-[80%] grid  grid-cols-1 md:grid-cols-2  lg:grid-cols-4 gap-8">
         {cats.length > 0 ? (
           cats.map((cat) => (
-            <div
-              key={cat._id}
-              className="w-full px-1 py-5 flex  justify-center gap-2 bg-primary-500 text-white hover:shadow-sm hover:shadow-purple-500 transition-all hover:-translate-y-2 duration-300 ease-out cursor-pointer"
-            >
-              <div className="flex flex-col justify-center">
-                <div className="text-[12px] font-semibold capitalize">
-                  {cat.title}
-                </div>
-                <div className="text-[10px] text-gray-200 font-semibold">
-                  {course &&
-                    course.filter((c) => c.categoryId === cat._id).length}{" "}
-                  Courses
+            <Link href={`/search?category=${cat._id}`} key={cat._id}>
+              <div className="w-full px-1 py-5 flex  justify-center gap-2 bg-primary-500 text-white hover:shadow-sm hover:shadow-purple-500 transition-all hover:-translate-y-2 duration-300 ease-out cursor-pointer">
+                <div className="flex flex-col justify-center">
+                  <div className="text-[12px] font-semibold capitalize">
+                    {cat.title}
+                  </div>
+                  <div className="text-[10px] text-gray-200 font-semibold">
+                    {course &&
+                      course.filter((c) => c.categoryId === cat._id)
+                        .length}{" "}
+                    Courses
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))
         ) : (
           <div className="w-full flex justify-center items-center">
