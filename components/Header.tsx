@@ -56,7 +56,7 @@ const Header = () => {
       <div className="flex flex-col md:flex-row justify-start items-center w-full md:w-[60%] gap-3 md:gap-5 px-0 md:px-5">
         <Link href="/" className="flex items-center gap-2">
           <PiGraduationCap className="text-primary-500 text-2xl font-bold" />
-          <h1 className="text-heading font-semibold text-md">E-Tutor</h1>
+          <h1 className="text-heading font-semibold text-md">Myjawaaf</h1>
         </Link>
 
         <form

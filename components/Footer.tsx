@@ -29,7 +29,7 @@ const Footer = () => {
         <div className="w-full md:w-[45%] lg:w-[30%] flex flex-col gap-3">
           <div className="flex items-center gap-2">
             <PiGraduationCap className="text-primary-500 text-3xl font-bold" />
-            <h1 className="text-gray-300 font-semibold text-2xl">E-Tutor</h1>
+            <h1 className="text-gray-300 font-semibold text-2xl">Myjawaaf</h1>
           </div>
           <p className="text-[12px] text-gray-400 max-w-[90%]">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, nam
